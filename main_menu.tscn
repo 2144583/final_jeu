@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://b270nl7q168ok"]
+
+[ext_resource type="Texture2D" uid="uid://c2g45o8x25r8a" path="res://assets/Sprites/mainmenubg.jpg" id="1_t68ko"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_wy16w"]
+[ext_resource type="PackedScene" uid="uid://bihukwfdh4h6g" path="res://menu_player_anim.tscn" id="3_wrv44"]
+[ext_resource type="AudioStream" uid="uid://w7womc4oysjl" path="res://assets/menu/Falcon 40 EPIC menu music.mp3" id="4_hs2vw"]
+[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/menu/Super Shiny.ttf" id="5_mgon4"]
+[ext_resource type="Theme" uid="uid://2t35brmxmgar" path="res://assets/menu/button_theme.tres" id="5_q5ieq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jqdlx"]
+font = ExtResource("5_mgon4")
+font_size = 105
+font_color = Color(1, 0.615686, 0.466667, 1)
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchor_left = 0.213
+anchor_right = 0.799
+anchor_bottom = 0.256
+offset_left = 330.624
+offset_right = -344.448
+offset_bottom = -165.888
+grow_horizontal = 2
+script = ExtResource("1_wy16w")
+
+[node name="Mainmenubg" type="Sprite2D" parent="."]
+position = Vector2(-47, 332)
+scale = Vector2(1.55, 1.11667)
+texture = ExtResource("1_t68ko")
+
+[node name="Label2" type="Label" parent="."]
+modulate = Color(0.319161, 0.214122, 0.0561587, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.373
+anchor_right = 0.628
+anchor_bottom = 0.42
+offset_left = -412.0
+offset_top = 46.0
+offset_right = 356.0
+offset_bottom = 209.0
+grow_horizontal = 2
+text = "Eye Of The Toaster
+Call of the bread
+"
+label_settings = SubResource("LabelSettings_jqdlx")
+uppercase = true
+max_lines_visible = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_hs2vw")
+autoplay = true
+
+[node name="AnimationPlayer" parent="." instance=ExtResource("3_wrv44")]
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -458.0
+offset_top = 381.0
+offset_right = -57.0
+offset_bottom = 504.0
+theme = ExtResource("5_q5ieq")
+action_mode = 0
+text = "Play"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

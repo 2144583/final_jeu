@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=3 uid="uid://bihukwfdh4h6g"]
+
+[ext_resource type="Texture2D" uid="uid://b5kq1xw80o5wg" path="res://assets/Sprites/player.png" id="1_px67s"]
+[ext_resource type="Texture2D" uid="uid://xnquk1fyejhl" path="res://assets/Sprites/pngtree-knife-clipart-png-image_6520363.png" id="2_mw2k6"]
+[ext_resource type="Texture2D" uid="uid://bpwbob06sqn1g" path="res://assets/Sprites/vecteezy_gun_1199096.png" id="3_c0tuc"]
+
+[sub_resource type="Animation" id="Animation_on68p"]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(864, 339)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Player/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.63846]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/Player/Sprite2D2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.612015]
+}
+
+[sub_resource type="Animation" id="Animation_tw4tb"]
+resource_name = "menu"
+length = 3.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1.03333, 1.27133, 1.57133, 2.00467, 2.30933, 2.50467, 2.70467, 3.00467, 3.20467),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(850, 441), Vector2(850, 431), Vector2(850, 421), Vector2(850, 411), Vector2(850, 402), Vector2(850, 394), Vector2(850, 391), Vector2(850, 391), Vector2(850, 394), Vector2(850, 402), Vector2(850, 411), Vector2(850, 431), Vector2(850, 441), Vector2(850, 441)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/Player/Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.9, 1.26667, 1.56667, 2.1, 2.56667, 3, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.63846, -1.76104, -1.93557, -2.01411, -2.02284, -1.93557, -1.76104, -1.63846, -1.63846]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimationPlayer/Player/Sprite2D2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.9, 1.26667, 1.56667, 2.1, 2.56667, 3, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.612015, -0.486947, -0.364774, -0.268781, -0.261799, -0.364774, -0.486947, -0.612611, -0.612611]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lwx36"]
+_data = {
+"RESET": SubResource("Animation_on68p"),
+"menu": SubResource("Animation_tw4tb")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_lwx36")
+}
+
+[node name="Player" type="Sprite2D" parent="."]
+top_level = true
+light_mask = 0
+position = Vector2(850, 391.368)
+scale = Vector2(0.241667, 0.241667)
+texture = ExtResource("1_px67s")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(-645.517, 285.517)
+rotation = -2.01338
+scale = Vector2(2.59994, 2.57112)
+texture = ExtResource("2_mw2k6")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Player"]
+position = Vector2(815.171, 246.585)
+rotation = -0.272961
+scale = Vector2(0.565654, 0.565654)
+texture = ExtResource("3_c0tuc")
