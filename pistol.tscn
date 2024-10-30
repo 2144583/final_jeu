@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtogf4bk85fqo"]
+
+[ext_resource type="PackedScene" uid="uid://c4i1dpbos8gkl" path="res://ranged_weapon.tscn" id="1_ucwyj"]
+
+[node name="Pistol" instance=ExtResource("1_ucwyj")]
+script = null

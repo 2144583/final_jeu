@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnq0g6tyr0kj8"
-path="res://.godot/imported/enemy toast.png-c55f8c10a72ba00e33c899956fe24461.ctex"
+uid="uid://cgw5g3wi8ju6i"
+path="res://.godot/imported/enemy_toast-removebg-preview.png-ad119a6f2bc3520b36c9139c8f013e0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/enemy toast.png"
-dest_files=["res://.godot/imported/enemy toast.png-c55f8c10a72ba00e33c899956fe24461.ctex"]
+source_file="res://assets/Sprites/enemy_toast-removebg-preview.png"
+dest_files=["res://.godot/imported/enemy_toast-removebg-preview.png-ad119a6f2bc3520b36c9139c8f013e0a.ctex"]
 
 [params]
 

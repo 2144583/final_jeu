@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 # Vitesse de déplacement du personnage
-var speed: float = 200.0
+var speed: float = 300.0
 @onready var _animation_player = $AnimationPlayer
 
 

@@ -50,6 +50,7 @@ max_lines_visible = 4
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_hs2vw")
 autoplay = true
+parameters/looping = true
 
 [node name="AnimationPlayer" parent="." instance=ExtResource("3_wrv44")]
 

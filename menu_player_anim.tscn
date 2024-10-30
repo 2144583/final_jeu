@@ -98,18 +98,18 @@ libraries = {
 [node name="Player" type="Sprite2D" parent="."]
 top_level = true
 light_mask = 0
-position = Vector2(850, 391.368)
+position = Vector2(864, 339)
 scale = Vector2(0.241667, 0.241667)
 texture = ExtResource("1_px67s")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
 position = Vector2(-645.517, 285.517)
-rotation = -2.01338
+rotation = -1.63846
 scale = Vector2(2.59994, 2.57112)
 texture = ExtResource("2_mw2k6")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Player"]
 position = Vector2(815.171, 246.585)
-rotation = -0.272961
+rotation = -0.612015
 scale = Vector2(0.565654, 0.565654)
 texture = ExtResource("3_c0tuc")

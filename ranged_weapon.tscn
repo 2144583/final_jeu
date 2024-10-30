@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4i1dpbos8gkl"]
+
+[ext_resource type="Script" path="res://ranged_weapon.gd" id="1_iuamv"]
+[ext_resource type="Script" path="res://effect.gd" id="2_ytrtp"]
+
+[node name="Ranged Weapon" type="Node2D"]
+script = ExtResource("1_iuamv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="Effect" type="Node" parent="."]
+script = ExtResource("2_ytrtp")

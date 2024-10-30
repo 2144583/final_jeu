@@ -12,6 +12,8 @@ var source_id = 0
 var rock_atlas = Vector2(randi_range(0, 3), randi_range(8, 15))
 var grass_atlas = Vector2(randi_range(0, 15), randi_range(0, 7))
 
+var wave : int = 1
+
 func _ready() -> void:
 	noise = noise_text.noise
 	generate_world()

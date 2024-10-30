@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3v541y4lvx3n"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_nj2fk"]
+[ext_resource type="Texture2D" uid="uid://cgw5g3wi8ju6i" path="res://assets/Sprites/enemy_toast-removebg-preview.png" id="1_sfuim"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mpkio"]
+
+[sub_resource type="Animation" id="Animation_miao0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.256568]
+}
+
+[sub_resource type="Animation" id="Animation_73m73"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.256568, -0.311681]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qaw0h"]
+_data = {
+"RESET": SubResource("Animation_miao0"),
+"walk": SubResource("Animation_73m73")
+}
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2(4.10685, 4.10685)
+script = ExtResource("1_nj2fk")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1, 5.04871e-29)
+rotation = 0.256568
+scale = Vector2(0.0417619, 0.0417619)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-23.1615, 6.07641)
+rotation = 2.88502
+scale = Vector2(17.1845, -15.3797)
+shape = SubResource("CapsuleShape2D_mpkio")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qaw0h")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 5.04871e-29)
+rotation = 0.256568
+scale = Vector2(0.0417619, 0.0417619)
+texture = ExtResource("1_sfuim")

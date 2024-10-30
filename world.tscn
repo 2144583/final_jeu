@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ba8thku4xmpck"]
+[gd_scene load_steps=10 format=3 uid="uid://ba8thku4xmpck"]
 
 [ext_resource type="Script" path="res://Proc_Gen_World.gd" id="1_rb227"]
 [ext_resource type="Texture2D" uid="uid://v34shw45iw53" path="res://assets/Map sprites/TX Tileset Grass.png" id="2_3ltbx"]
 [ext_resource type="PackedScene" uid="uid://cbblkd82merc5" path="res://player.tscn" id="3_sgtly"]
+[ext_resource type="PackedScene" uid="uid://b3v541y4lvx3n" path="res://enemy.tscn" id="4_kidxj"]
 
 [sub_resource type="Gradient" id="Gradient_k1b6r"]
 interpolation_mode = 1
@@ -286,7 +287,14 @@ script = ExtResource("1_rb227")
 noise_text = SubResource("NoiseTexture2D_baxp8")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+texture_repeat = 3
+scale = Vector2(5, 5)
 tile_set = SubResource("TileSet_6fhwo")
+collision_visibility_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("3_sgtly")]
-position = Vector2(577, 144)
+position = Vector2(12000, 12000)
+
+[node name="enemy" parent="." instance=ExtResource("4_kidxj")]
+position = Vector2(11742, 12011)
