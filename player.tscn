@@ -69,6 +69,9 @@ radius = 31.0639
 height = 80.2141
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
+collision_priority = 5.0
 script = ExtResource("1_mfbm8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -89,4 +92,5 @@ position_smoothing_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)
 rotation = 3.09301
+scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_7ga6b")

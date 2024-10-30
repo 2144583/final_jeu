@@ -1,4 +1,4 @@
-extends Node2D
+extends RigidBody2D
 
 const SPEED = 300.0
 
@@ -8,13 +8,12 @@ var player_position : Vector2
 
 func _ready() -> void:
 	animator = $AnimationPlayer
+	angular_velocity = 0
+	add_to_group("enemy")
 	
 
 func _physics_process(delta: float) -> void:
-	if player:
-		print("player existant")
 	player_position = player.global_position
 	position += (player_position - global_position).normalized() * 3
-	print(player_position)
 	if animator.current_animation != "walk":
 		animator.play("walk")

@@ -3,6 +3,7 @@ extends CharacterBody2D
 # Vitesse de déplacement du personnage
 var speed: float = 300.0
 @onready var _animation_player = $AnimationPlayer
+var push_force = 200
 
 
 func _process(delta: float) -> void:
@@ -23,3 +24,10 @@ func _process(delta: float) -> void:
 			_animation_player.play("walk") 
 	else:  
 			_animation_player.play("RESET")
+
+	for i in range(get_slide_collision_count()):
+		var body = get_slide_collision(i).get_collider()
+		if body.is_in_group("enemy"):  # Vérifie si l'objet touché est un ennemi
+			print("yessir")
+			var direction = (body.position - position).normalized()
+			body.apply_impulse(direction * push_force)  # Applique une impulsion pour repousser l'ennemi
