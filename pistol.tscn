@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtogf4bk85fqo"]
+[gd_scene load_steps=4 format=3 uid="uid://dtogf4bk85fqo"]
 
 [ext_resource type="PackedScene" uid="uid://c4i1dpbos8gkl" path="res://ranged_weapon.tscn" id="1_ucwyj"]
+[ext_resource type="Script" path="res://pistol.gd" id="2_c2k2c"]
+[ext_resource type="Texture2D" uid="uid://bpwbob06sqn1g" path="res://assets/Sprites/vecteezy_gun_1199096.png" id="3_4gv36"]
 
 [node name="Pistol" instance=ExtResource("1_ucwyj")]
-script = null
+script = ExtResource("2_c2k2c")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.0311332, 0.0311332)
+texture = ExtResource("3_4gv36")

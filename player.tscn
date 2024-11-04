@@ -81,8 +81,6 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -40)
-rotation = -0.192274
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_b4c5u")
 
@@ -92,5 +90,20 @@ position_smoothing_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -5)
 rotation = 3.09301
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_7ga6b")
+
+[node name="Weapon_slot1" type="Marker2D" parent="."]
+position = Vector2(30, 14)
+scale = Vector2(1, 1)
+
+[node name="Weapon_slot2" type="Marker2D" parent="."]
+position = Vector2(-33, 15)
+scale = Vector2(1, 1)
+
+[node name="Weapon_slot3" type="Marker2D" parent="."]
+position = Vector2(42, -27)
+scale = Vector2(1, 1)
+
+[node name="Weapon_slot4" type="Marker2D" parent="."]
+position = Vector2(-41, -28)
+scale = Vector2(1, 1)

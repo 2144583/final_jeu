@@ -1,10 +1,4 @@
-extends Node2D
-class_name ranged_weapon
-
-var _damage : float
-var _attack_speed : float
-var _tier : int = 1
-
+extends ranged_weapon
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,7 +6,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	
 func _adjust_stats() -> void:
