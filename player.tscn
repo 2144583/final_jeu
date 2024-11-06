@@ -93,7 +93,7 @@ rotation = 3.09301
 shape = SubResource("CapsuleShape2D_7ga6b")
 
 [node name="Weapon_slot1" type="Marker2D" parent="."]
-position = Vector2(30, 14)
+position = Vector2(25, 2)
 
 [node name="Weapon_slot2" type="Marker2D" parent="."]
 position = Vector2(-33, 15)
