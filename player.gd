@@ -3,7 +3,7 @@ extends CharacterBody2D
 # Vitesse de déplacement du personnage
 var speed: float = 300.0
 @onready var _animation_player = $AnimationPlayer
-var push_force = 20
+var push_force = 200
 var gun_scene: PackedScene
 
 # Variable pour stocker l'instance du fusil
@@ -42,6 +42,6 @@ func _process(delta: float) -> void:
 
 	for i in range(get_slide_collision_count()):
 		var body = get_slide_collision(i).get_collider()
-		if body.is_in_group("enemy"): 
+		if body.is_in_group("enemies"): 
 			var direction = (body.position - position).normalized()
 			body.apply_impulse(direction * push_force)  

@@ -94,16 +94,12 @@ shape = SubResource("CapsuleShape2D_7ga6b")
 
 [node name="Weapon_slot1" type="Marker2D" parent="."]
 position = Vector2(30, 14)
-scale = Vector2(1, 1)
 
 [node name="Weapon_slot2" type="Marker2D" parent="."]
 position = Vector2(-33, 15)
-scale = Vector2(1, 1)
 
 [node name="Weapon_slot3" type="Marker2D" parent="."]
 position = Vector2(42, -27)
-scale = Vector2(1, 1)
 
 [node name="Weapon_slot4" type="Marker2D" parent="."]
 position = Vector2(-41, -28)
-scale = Vector2(1, 1)

@@ -1,15 +1,15 @@
 extends RigidBody2D
 
 const SPEED = 300.0
-
 var animator
 var player_position : Vector2
 @onready var player = get_parent().get_node("Player")
 
+
 func _ready() -> void:
 	animator = $AnimationPlayer
 	angular_velocity = 0
-	add_to_group("enemy")
+	add_to_group("enemies")
 	
 
 func _physics_process(delta: float) -> void:
