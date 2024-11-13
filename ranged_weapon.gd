@@ -5,10 +5,14 @@ var _damage : float
 var _attack_speed : float
 var _tier : int = 1
 var _range: int
+
 var target = Node2D
 var target_enemy: Node2D
 var closest_distance = INF
 var closest_enemy = null
+
+var bullet_scene : PackedScene = preload("res://bullet.tscn")
+var bullet : Bullet
 
 
 # Called when the node enters the scene tree for the first time.
@@ -36,11 +40,23 @@ func _process(delta: float) -> void:
 	if target:
 		look_at(target.global_position)
 		rotation_degrees = wrapf(rotation_degrees, 0, 360)
-		print(rotation_degrees)
-		get_child(0).flip_v = abs(rotation_degrees) > 90
-	
+		get_child(0).flip_v = abs(rotation_degrees) > 90 and abs(rotation_degrees) < 270 
+		
+func shoot():
+	bullet = bullet_scene.instantiate()
+	var world = get_node("../../../")
+	world.add_child(bullet)
+	bullet.global_position = $Muzzle.global_position
+	bullet.global_rotation = $Muzzle.global_rotation
+	var shoot_direction = $Muzzle.global_transform.x.normalized()
+	bullet.direction = shoot_direction 
+	bullet.owner = null
+		
+		
 func _adjust_stats() -> void:
 	pass
-	
-func shoot() -> void:
-	pass
+
+
+
+func _on_timer_timeout() -> void:
+	shoot()

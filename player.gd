@@ -3,9 +3,8 @@ extends CharacterBody2D
 # Vitesse de déplacement du personnage
 var speed: float = 300.0
 @onready var _animation_player = $AnimationPlayer
-var push_force = 200
+var push_force = 20
 var gun_scene: PackedScene
-
 # Variable pour stocker l'instance du fusil
 var gun_instance: Node2D
 

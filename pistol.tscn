@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://bpwbob06sqn1g" path="res://assets/Sprites/vecteezy_gun_1199096.png" id="3_4gv36"]
 
 [node name="Pistol" instance=ExtResource("1_ucwyj")]
-rotation = -1.61024
 script = ExtResource("2_c2k2c")
 
 [node name="Sprite2D" parent="." index="0"]
@@ -13,5 +12,6 @@ position = Vector2(6, 5)
 scale = Vector2(0.0311332, 0.0311332)
 texture = ExtResource("3_4gv36")
 
-[node name="Marker2D" parent="." index="1"]
-position = Vector2(35, -9)
+[node name="Muzzle" parent="." index="1"]
+position = Vector2(38, -7)
+scale = Vector2(2.27938, 2.27938)

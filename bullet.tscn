@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://cq5f8sb3c8fci"]
+
+[ext_resource type="Script" path="res://bullet.gd" id="1_2nr02"]
+[ext_resource type="Texture2D" uid="uid://busi5krs8k2me" path="res://assets/Sprites/All_Fire_Bullet_Pixel_16x16_04.png" id="2_kmjxo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34wa5"]
+size = Vector2(10, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ty6x"]
+atlas = ExtResource("2_kmjxo")
+region = Rect2(0, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbws7"]
+atlas = ExtResource("2_kmjxo")
+region = Rect2(16, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xuw13"]
+atlas = ExtResource("2_kmjxo")
+region = Rect2(32, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ai8ir"]
+atlas = ExtResource("2_kmjxo")
+region = Rect2(48, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dywwl"]
+atlas = ExtResource("2_kmjxo")
+region = Rect2(64, 256, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l31oc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ty6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbws7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xuw13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ai8ir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dywwl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Bullet" type="Area2D"]
+position = Vector2(-19, 9)
+scale = Vector2(2.03627, 2.04477)
+script = ExtResource("1_2nr02")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_34wa5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1, -2)
+sprite_frames = SubResource("SpriteFrames_l31oc")
+frame_progress = 0.656955
+
+[connection signal="bullet_out_of_screen" from="." to="." method="_on_bullet_out_of_screen"]

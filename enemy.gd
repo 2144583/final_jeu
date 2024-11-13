@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-const SPEED = 300.0
+const SPEED = 250.0
 var animator
 var player_position : Vector2
 @onready var player = get_parent().get_node("Player")
