@@ -1,12 +1,15 @@
 extends CharacterBody2D
 
+class_name Player
 # Vitesse de déplacement du personnage
 var speed: float = 300.0
 @onready var _animation_player = $AnimationPlayer
 var push_force = 20
 var gun_scene: PackedScene
+var gun_scene2: PackedScene
 # Variable pour stocker l'instance du fusil
 var gun_instance: Node2D
+var gun_instance2: Node2D
 
 func _ready():
 	gun_scene = preload("res://pistol.tscn")
@@ -18,6 +21,17 @@ func _ready():
 
 	# Ajouter le fusil comme enfant du personnage
 	weapon_slot.add_child(gun_instance)
+	
+	gun_scene2 = preload("res://pistol.tscn")
+	gun_instance2 = gun_scene.instantiate()
+	
+	var weapon_slot2 = $Weapon_slot2
+	gun_instance2.position = weapon_slot2.position
+
+	# Ajouter le fusil comme enfant du personnage
+	weapon_slot2.add_child(gun_instance2)
+	
+
 
 
 func _process(delta: float) -> void:

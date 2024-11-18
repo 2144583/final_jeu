@@ -34,5 +34,5 @@ func enemy_spawner():
 	enemy.position = get_node("Player").position + Vector2(500, 0).rotated(randf_range(0, 2*PI))
 
 
-#func _on_timer_timeout() -> void:
-#	enemy_spawner()
+func _on_timer_timeout() -> void:
+	enemy_spawner()

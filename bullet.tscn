@@ -64,4 +64,5 @@ position = Vector2(1, -2)
 sprite_frames = SubResource("SpriteFrames_l31oc")
 frame_progress = 0.656955
 
+[connection signal="body_entered" from="." to="." method="_on_ennemy_hit"]
 [connection signal="bullet_out_of_screen" from="." to="." method="_on_bullet_out_of_screen"]

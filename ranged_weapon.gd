@@ -11,25 +11,37 @@ var target_enemy: Node2D
 var closest_distance = INF
 var closest_enemy = null
 
+var player: Player
+var camera: Camera2D
+
 var bullet_scene : PackedScene = preload("res://bullet.tscn")
 var bullet : Bullet
 
+@onready var _animation_player = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	_adjust_stats()
+	
+	player = get_parent().get_parent()
+	camera = player.get_node("Camera2D")
+	
+	print(_damage)
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	if enemies.size() > 0:
 		target = _get_closest_enemy(enemies)
 
 func _get_closest_enemy(enemies):
+	
 	var closest_enemy = null
 	var min_distance = INF
 	for enemy in enemies:
-		var distance = global_position.distance_to(enemy.global_position)
-		if distance < min_distance:
-			min_distance = distance
-			closest_enemy = enemy
+		if is_instance_valid(enemy):
+			var distance = global_position.distance_to(enemy.global_position)
+			if distance < min_distance:
+				min_distance = distance
+				closest_enemy = enemy
 	return closest_enemy
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,12 +50,17 @@ func _process(delta: float) -> void:
 	if enemies.size() > 0:
 		target = _get_closest_enemy(enemies)
 	if target:
-		look_at(target.global_position)
-		rotation_degrees = wrapf(rotation_degrees, 0, 360)
-		get_child(0).flip_v = abs(rotation_degrees) > 90 and abs(rotation_degrees) < 270 
-		
+		if is_instance_valid(target):
+			look_at(target.global_position)
+			rotation_degrees = wrapf(rotation_degrees, 0, 360)
+			get_child(0).flip_v = abs(rotation_degrees) > 90 and abs(rotation_degrees) < 270 
+
+
 func shoot():
+	_animation_player.play("shoot")
 	bullet = bullet_scene.instantiate()
+	bullet.damage = _damage
+	bullet.camera = camera
 	var world = get_node("../../../")
 	world.add_child(bullet)
 	bullet.global_position = $Muzzle.global_position
