@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3v541y4lvx3n"]
+[gd_scene load_steps=10 format=3 uid="uid://b3v541y4lvx3n"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_nj2fk"]
 [ext_resource type="Texture2D" uid="uid://cgw5g3wi8ju6i" path="res://assets/Sprites/enemy_toast-removebg-preview.png" id="1_sfuim"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mpkio"]
+[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/menu/Super Shiny.ttf" id="3_s4evr"]
 
 [sub_resource type="Animation" id="Animation_cmvfw"]
 length = 0.001
@@ -17,7 +16,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.256568]
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_rufg6"]
@@ -43,17 +42,18 @@ _data = {
 "walk": SubResource("Animation_rufg6")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_jpiax"]
+font = ExtResource("3_s4evr")
+font_size = 42
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mpkio"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8mbom"]
+
 [node name="RigidBody2D" type="RigidBody2D" groups=["enemies"]]
 mass = 3.0
 gravity_scale = 0.0
 script = ExtResource("1_nj2fk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-6.67572e-06, -1.54972e-06)
-rotation = 3.14159
-scale = Vector2(2.94731, -2.63777)
-shape = SubResource("CapsuleShape2D_mpkio")
-one_way_collision_margin = 6.1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -62,6 +62,22 @@ libraries = {
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4.10685, 2.07343e-28)
-rotation = 0.256568
 scale = Vector2(0.17151, 0.17151)
 texture = ExtResource("1_sfuim")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_jpiax")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.94731, -2.63777)
+shape = SubResource("CapsuleShape2D_mpkio")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(2.96884, 2.96884)
+shape = SubResource("CapsuleShape2D_8mbom")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,7 +1,8 @@
 extends Node2D
 class_name ranged_weapon
 
-var _damage : float
+var _mindamage : int
+var _maxdamage : int
 var _attack_speed : float
 var _tier : int = 1
 var _range: int
@@ -17,8 +18,11 @@ var camera: Camera2D
 var bullet_scene : PackedScene = preload("res://bullet.tscn")
 var bullet : Bullet
 
-@onready var _animation_player = $AnimationPlayer
+var last_shot_time : float = -INF
+var cooldown : float
 
+@onready var _animation_player = $AnimationPlayer
+@onready var shoot_sound : AudioStreamPlayer = $shoot
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -26,15 +30,15 @@ func _ready() -> void:
 	
 	player = get_parent().get_parent()
 	camera = player.get_node("Camera2D")
-	
-	print(_damage)
 	var enemies = get_tree().get_nodes_in_group("Enemy")
 	if enemies.size() > 0:
 		target = _get_closest_enemy(enemies)
+	cooldown = 1 / _attack_speed
+	$Timer.wait_time = cooldown
 
 func _get_closest_enemy(enemies):
 	
-	var closest_enemy = null
+	closest_enemy = null
 	var min_distance = INF
 	for enemy in enemies:
 		if is_instance_valid(enemy):
@@ -45,7 +49,7 @@ func _get_closest_enemy(enemies):
 	return closest_enemy
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	if enemies.size() > 0:
 		target = _get_closest_enemy(enemies)
@@ -57,19 +61,27 @@ func _process(delta: float) -> void:
 
 
 func shoot():
-	_animation_player.play("shoot")
-	bullet = bullet_scene.instantiate()
-	bullet.damage = _damage
-	bullet.camera = camera
-	var world = get_node("../../../")
-	world.add_child(bullet)
-	bullet.global_position = $Muzzle.global_position
-	bullet.global_rotation = $Muzzle.global_rotation
-	var shoot_direction = $Muzzle.global_transform.x.normalized()
-	bullet.direction = shoot_direction 
-	bullet.owner = null
-		
-		
+	var current_time = Time.get_ticks_msec() / 1000.0
+	if current_time - last_shot_time >= cooldown:
+		if target:
+			if is_instance_valid(target):
+				var distance = global_position.distance_to(target.global_position)
+				
+				if distance <= _range:
+					_animation_player.play("shoot")
+					shoot_sound.play()
+					bullet = bullet_scene.instantiate()
+					bullet.damage = randi_range(_mindamage, _maxdamage)
+					bullet.camera = camera
+					var world = get_node("../../../")
+					world.add_child(bullet)
+					bullet.global_position = $Muzzle.global_position
+					bullet.global_rotation = $Muzzle.global_rotation
+					var shoot_direction = $Muzzle.global_transform.x.normalized()
+					bullet.direction = shoot_direction 
+					bullet.owner = null
+
+
 func _adjust_stats() -> void:
 	pass
 

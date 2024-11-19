@@ -11,7 +11,13 @@ var gun_scene2: PackedScene
 var gun_instance: Node2D
 var gun_instance2: Node2D
 
+var BASE_HEALTH : int = 5
+var health
+
 func _ready():
+	health = BASE_HEALTH
+	add_to_group("player")
+	
 	gun_scene = preload("res://pistol.tscn")
 	gun_instance = gun_scene.instantiate()
 
@@ -34,7 +40,7 @@ func _ready():
 
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -57,4 +63,34 @@ func _process(delta: float) -> void:
 		var body = get_slide_collision(i).get_collider()
 		if body.is_in_group("enemies"): 
 			var direction = (body.position - position).normalized()
-			body.apply_impulse(direction * push_force)  
+			body.apply_impulse(direction * push_force) 
+
+func take_damage(damage : int) -> void:
+	health = health - damage
+	show_damage(damage)
+	$Sprite2D.modulate = Color(1, 0, 0)
+	await get_tree().create_timer(0.1).timeout
+	$Sprite2D.modulate = Color(1, 1, 1)
+	if health <= 0:
+		die()
+
+func show_damage(damage):
+	var label = Label.new()
+	label.label_settings = LabelSettings.new()
+	
+	label.label_settings.font_size = 32
+	label.label_settings.font = preload("res://assets/menu/Super Shiny.ttf")
+	
+	label.modulate = Color(1, 0.1, 0)
+	label.text = str(damage)
+	add_child(label)
+	label.position = Vector2(0, -50)
+	
+	var tween = create_tween()
+	tween.tween_property(label, "position", label.position + Vector2(randf_range(-50, 50), -30), 0.5) 
+	tween.tween_property(label, "modulate:a", 0, 0.5)
+	await tween.finished
+	label.queue_free()
+	
+func die():
+	print("ono")

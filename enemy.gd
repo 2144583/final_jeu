@@ -9,13 +9,16 @@ var is_dead = false
 var BASE_HEALTH : int = 5
 var health
 
+var BASE_DAMAGE : int = 2
+var damage
+
 func _ready() -> void:
 	animator = $AnimationPlayer
 	health = BASE_HEALTH
+	damage = BASE_DAMAGE
 	add_to_group("enemies")
-	
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_dead:
 		return
 	
@@ -27,10 +30,34 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(bullet: Bullet) -> void:
 	health = health - bullet.damage
-	print("ayoye ", health)
+	show_damage(bullet.damage)
+	$Sprite2D.modulate = Color(1, 0, 0)
+	await get_tree().create_timer(0.1).timeout
+	$Sprite2D.modulate = Color(1, 1, 1)
 	if health <= 0:
 		die()
+
+func show_damage(bullet_damage):
+	var label = Label.new()
+	label.text = str(bullet_damage)
+	label.label_settings = LabelSettings.new()
 	
+	label.label_settings.font_size = 32
+	label.label_settings.font = preload("res://assets/menu/Super Shiny.ttf")
+	
+	add_child(label)
+	label.position = Vector2(0, -50)
+	
+	var tween = create_tween()
+	tween.tween_property(label, "position", label.position + Vector2(randf_range(-50, 50), -30), 0.5) 
+	tween.tween_property(label, "modulate:a", 0, 0.5)
+	await tween.finished
+	label.queue_free()  
+
 func die() -> void:
 	is_dead = true
 	queue_free()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		body.take_damage(damage)
