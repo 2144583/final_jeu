@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 
 project/assembly_name="Eye_Of_The_Toaster"
 
+[global_group]
+
+enemies=""
+
 [input]
 
 down={

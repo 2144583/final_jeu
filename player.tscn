@@ -99,7 +99,7 @@ position = Vector2(25, 2)
 position = Vector2(-26, 1)
 
 [node name="Weapon_slot3" type="Marker2D" parent="."]
-position = Vector2(34, -45)
+position = Vector2(38, -27)
 
 [node name="Weapon_slot4" type="Marker2D" parent="."]
-position = Vector2(-28, -45)
+position = Vector2(-37, -24)

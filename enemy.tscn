@@ -51,7 +51,7 @@ font_size = 42
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8mbom"]
 
 [node name="RigidBody2D" type="RigidBody2D" groups=["enemies"]]
-mass = 3.0
+mass = 10.0
 gravity_scale = 0.0
 script = ExtResource("1_nj2fk")
 

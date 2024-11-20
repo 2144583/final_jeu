@@ -5,17 +5,13 @@ var player_position : Vector2
 @onready var player = get_parent().get_node("Player")
 
 var is_dead = false
-
-var BASE_HEALTH : int = 5
+signal enemy_died
 var health
-
-var BASE_DAMAGE : int = 2
 var damage
+var speed
 
 func _ready() -> void:
 	animator = $AnimationPlayer
-	health = BASE_HEALTH
-	damage = BASE_DAMAGE
 	add_to_group("enemies")
 
 func _physics_process(_delta: float) -> void:
@@ -24,18 +20,19 @@ func _physics_process(_delta: float) -> void:
 	
 	player_position = player.global_position
 	angular_velocity = 0
-	position += (player_position - global_position).normalized() * 3
+	position += (player_position - global_position).normalized() * speed
 	if animator.current_animation != "walk":
 		animator.play("walk")
 
 func take_damage(bullet: Bullet) -> void:
 	health = health - bullet.damage
+	if health <= 0:
+		die()
 	show_damage(bullet.damage)
 	$Sprite2D.modulate = Color(1, 0, 0)
 	await get_tree().create_timer(0.1).timeout
 	$Sprite2D.modulate = Color(1, 1, 1)
-	if health <= 0:
-		die()
+	
 
 func show_damage(bullet_damage):
 	var label = Label.new()
@@ -56,6 +53,7 @@ func show_damage(bullet_damage):
 
 func die() -> void:
 	is_dead = true
+	emit_signal("enemy_died", self)
 	queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

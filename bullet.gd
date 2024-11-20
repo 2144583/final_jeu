@@ -15,7 +15,6 @@ func _physics_process(delta):
 	position += direction * BASE_SPEED * delta
 	screen_rect = get_camera_screen_rect()
 	if is_out_of_screen(screen_rect):
-		print("out of bounds")
 		emit_signal("bullet_out_of_screen")
 		queue_free()
 
@@ -36,7 +35,7 @@ func is_out_of_screen(screen_rect: Rect2) -> bool:
 func _on_ennemy_hit(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
 		body.take_damage(self)
-		apply_knockback(body)
+		#apply_knockback(body)
 		queue_free()
 
 func apply_knockback(body: Node2D) -> void:

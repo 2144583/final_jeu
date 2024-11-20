@@ -7,7 +7,7 @@ var _attack_speed : float
 var _tier : int = 1
 var _range: int
 
-var target = Node2D
+var target : Node2D
 var target_enemy: Node2D
 var closest_distance = INF
 var closest_enemy = null
@@ -30,9 +30,6 @@ func _ready() -> void:
 	
 	player = get_parent().get_parent()
 	camera = player.get_node("Camera2D")
-	var enemies = get_tree().get_nodes_in_group("Enemy")
-	if enemies.size() > 0:
-		target = _get_closest_enemy(enemies)
 	cooldown = 1 / _attack_speed
 	$Timer.wait_time = cooldown
 
@@ -53,7 +50,7 @@ func _process(_delta: float) -> void:
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	if enemies.size() > 0:
 		target = _get_closest_enemy(enemies)
-	if target:
+	if target != null and target :
 		if is_instance_valid(target):
 			look_at(target.global_position)
 			rotation_degrees = wrapf(rotation_degrees, 0, 360)

@@ -7,9 +7,13 @@ var speed: float = 300.0
 var push_force = 20
 var gun_scene: PackedScene
 var gun_scene2: PackedScene
+var gun_scene3: PackedScene
+var gun_scene4: PackedScene
 # Variable pour stocker l'instance du fusil
 var gun_instance: Node2D
 var gun_instance2: Node2D
+var gun_instance3: Node2D
+var gun_instance4: Node2D
 
 var BASE_HEALTH : int = 5
 var health
@@ -28,6 +32,8 @@ func _ready():
 	# Ajouter le fusil comme enfant du personnage
 	weapon_slot.add_child(gun_instance)
 	
+	#=============================
+	
 	gun_scene2 = preload("res://pistol.tscn")
 	gun_instance2 = gun_scene.instantiate()
 	
@@ -36,6 +42,30 @@ func _ready():
 
 	# Ajouter le fusil comme enfant du personnage
 	weapon_slot2.add_child(gun_instance2)
+	
+	#===============================
+	
+	gun_scene3 = preload("res://pistol.tscn")
+	gun_instance3 = gun_scene3.instantiate()
+
+	# Positionner le fusil à l'emplacement de gun_position
+	var weapon_slot3 = $Weapon_slot3
+	gun_instance3.position = weapon_slot3.position
+
+	# Ajouter le fusil comme enfant du personnage
+	weapon_slot3.add_child(gun_instance3)
+	
+	#========================================
+	
+	gun_scene4 = preload("res://pistol.tscn")
+	gun_instance4 = gun_scene4.instantiate()
+
+	# Positionner le fusil à l'emplacement de gun_position
+	var weapon_slot4 = $Weapon_slot4
+	gun_instance4.position = weapon_slot4.position
+
+	# Ajouter le fusil comme enfant du personnage
+	weapon_slot4.add_child(gun_instance4)
 	
 
 
