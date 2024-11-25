@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpcocax32kjcj"]
+
+[ext_resource type="PackedScene" uid="uid://b5qlk03u4sb08" path="res://hp_bar.tscn" id="1_bktsm"]
+[ext_resource type="PackedScene" uid="uid://bnir5la2vj5mt" path="res://xp_bar.tscn" id="2_0waxm"]
+[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/menu/Super Shiny.ttf" id="3_5bjj5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5vs7n"]
+font = ExtResource("3_5bjj5")
+font_size = 62
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="HP_Bar" parent="." instance=ExtResource("1_bktsm")]
+offset_left = 28.0
+offset_top = 38.0
+offset_right = 652.0
+offset_bottom = 329.0
+
+[node name="XP_Bar" parent="." instance=ExtResource("2_0waxm")]
+offset_left = 29.0
+offset_top = 98.0
+offset_right = 653.0
+offset_bottom = 389.0
+scale = Vector2(0.359533, 0.159482)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 400.0
+offset_top = 36.0
+offset_right = 637.0
+offset_bottom = 83.0
+text = "Manche : "
+label_settings = SubResource("LabelSettings_5vs7n")

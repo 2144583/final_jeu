@@ -1,9 +1,9 @@
 extends Node2D
 class_name ranged_weapon
 
-var _mindamage : int
+@export var _mindamage : int
 var _maxdamage : int
-var _attack_speed : float
+@export var _attack_speed : float
 var _tier : int = 1
 var _range: int
 
@@ -58,8 +58,6 @@ func _process(_delta: float) -> void:
 
 
 func shoot():
-	var current_time = Time.get_ticks_msec() / 1000.0
-	if current_time - last_shot_time >= cooldown:
 		if target:
 			if is_instance_valid(target):
 				var distance = global_position.distance_to(target.global_position)

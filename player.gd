@@ -18,6 +18,12 @@ var gun_instance4: Node2D
 var BASE_HEALTH : int = 5
 var health
 
+var xp = 0
+@export var BASE_XP_REQUIREMENT = 5;
+var xp_requirement = BASE_XP_REQUIREMENT
+
+var level = 1
+
 func _ready():
 	health = BASE_HEALTH
 	add_to_group("player")
@@ -122,5 +128,21 @@ func show_damage(damage):
 	await tween.finished
 	label.queue_free()
 	
+func gainxp(enemy_xp):
+	xp += enemy_xp
+
+func check_level_up():
+	while xp > xp_requirement:
+		level_up()
+	
+	print("current xp : ", xp)
+	print("xp requirement : ", xp_requirement)
+
+func level_up():
+	level += 1
+	xp = xp - xp_requirement
+	xp_requirement += get_parent().current_wave
+	print("LEVEL UP : ", level)
+
 func die():
 	print("ono")

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5qlk03u4sb08"]
+
+[ext_resource type="Texture2D" uid="uid://b5ix75o8wymtq" path="res://assets/Game_UI/GUI-Kit-Pack-Free_61.png" id="1_n0mm4"]
+[ext_resource type="Texture2D" uid="uid://d2hvlrwydjsnl" path="res://assets/Game_UI/GUI-Kit-Pack-Free_15.png" id="2_cl6bj"]
+[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/menu/Super Shiny.ttf" id="3_ggppi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r1lde"]
+font = ExtResource("3_ggppi")
+font_size = 63
+
+[node name="HP_Bar" type="TextureProgressBar"]
+offset_right = 624.0
+offset_bottom = 291.0
+scale = Vector2(0.358473, 0.160324)
+texture_under = ExtResource("1_n0mm4")
+texture_progress = ExtResource("2_cl6bj")
+
+[node name="HP_Label" type="Label" parent="."]
+texture_filter = 3
+layout_mode = 0
+offset_left = 139.0
+offset_top = 56.0
+offset_right = 391.0
+offset_bottom = 163.0
+scale = Vector2(1.86795, 4.0974)
+text = "HP : 100"
+label_settings = SubResource("LabelSettings_r1lde")

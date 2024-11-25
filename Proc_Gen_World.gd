@@ -10,7 +10,7 @@ var height : int = 400
 
 var source_id = 0
 
-var current_wave : int = 1
+@export var current_wave : int = 1
 @onready var spawn_Timer : Timer = $Enemy_Spawn_Timer
 var enemy_spawn_speed : float = 1
 var enemies_to_spawn : int
@@ -18,13 +18,17 @@ var ennemies_left : int
 var enemy_stats = {
 	"health": 5,
 	"damage": 2,
-	"speed": 3
+	"speed": 3,
+	"xp": 1
 }
 
 var active_enemies = []
 
+var player : CharacterBody2D
+
 func _ready() -> void:
 	noise = noise_text.noise
+	player = get_node("Player")
 	generate_world()
 	start_wave()
 
@@ -34,6 +38,7 @@ func _process(delta: float) -> void:
 
 func next_wave():
 	current_wave += 1
+	player.check_level_up()
 	start_wave()
 
 func generate_world():
@@ -48,10 +53,11 @@ func generate_world():
 func start_wave():
 	print("current wave ", current_wave)
 	enemies_to_spawn = 5 + current_wave * 2
-	enemy_stats["health"] += current_wave * 2
-	enemy_stats["damage"] += current_wave
-	enemy_stats["speed"] = 3 + current_wave * 0.1
-	spawn_Timer.wait_time -= 0.05
+	enemy_stats["health"] = current_wave * 2
+	enemy_stats["damage"] = current_wave
+	enemy_stats["speed"] += current_wave * 0.1
+	enemy_stats["xp"] +=  current_wave * 0.1
+	spawn_Timer.wait_time -= 0.005
 	spawn_Timer.start(spawn_Timer.wait_time)
 
 func enemy_spawner():
@@ -66,6 +72,7 @@ func enemy_spawner():
 
 func on_enemy_died(enemy):
 	active_enemies.erase(enemy)
+	
 
 func check_enemy_spawn():
 	if enemies_to_spawn > 0:

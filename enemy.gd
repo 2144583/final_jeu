@@ -9,6 +9,7 @@ signal enemy_died
 var health
 var damage
 var speed
+var xp = 1
 
 func _ready() -> void:
 	animator = $AnimationPlayer
@@ -54,6 +55,7 @@ func show_damage(bullet_damage):
 func die() -> void:
 	is_dead = true
 	emit_signal("enemy_died", self)
+	player.gainxp(xp)
 	queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
