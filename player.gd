@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 class_name Player
 # Vitesse de déplacement du personnage
-var speed: float = 300.0
+
 @onready var _animation_player = $AnimationPlayer
-var push_force = 20
+
 var gun_scene: PackedScene
 var gun_scene2: PackedScene
 var gun_scene3: PackedScene
@@ -15,17 +15,38 @@ var gun_instance2: Node2D
 var gun_instance3: Node2D
 var gun_instance4: Node2D
 
-var BASE_HEALTH : int = 5
-var health
+#Basic player stats here
+var max_health = 5
+var health = max_health
+var speed: float = 300.0
+var push_force = 20
 
+#Everything XP here
 var xp = 0
 @export var BASE_XP_REQUIREMENT = 5;
 var xp_requirement = BASE_XP_REQUIREMENT
-
 var level = 1
+var level_up_count = 0
+
+#UI Elements here
+var hp_bar : TextureProgressBar
+var xp_bar : TextureProgressBar
+var wave_label : Label
+var level_label : Label
 
 func _ready():
-	health = BASE_HEALTH
+	
+	hp_bar = $CanvasLayer.get_child(0)
+	hp_bar.update_value(health, max_health)
+	xp_bar = $CanvasLayer.get_child(1)
+	xp_bar.update_value(xp, xp_requirement)
+	wave_label = $CanvasLayer.get_child(2)
+	level_label = $CanvasLayer.get_child(3)
+	
+	wave_label.text = "Manche : 1"
+	level_label.text = "Vous etes niveau : 1"
+	
+	
 	add_to_group("player")
 	
 	gun_scene = preload("res://pistol.tscn")
@@ -38,40 +59,6 @@ func _ready():
 	# Ajouter le fusil comme enfant du personnage
 	weapon_slot.add_child(gun_instance)
 	
-	#=============================
-	
-	gun_scene2 = preload("res://pistol.tscn")
-	gun_instance2 = gun_scene.instantiate()
-	
-	var weapon_slot2 = $Weapon_slot2
-	gun_instance2.position = weapon_slot2.position
-
-	# Ajouter le fusil comme enfant du personnage
-	weapon_slot2.add_child(gun_instance2)
-	
-	#===============================
-	
-	gun_scene3 = preload("res://pistol.tscn")
-	gun_instance3 = gun_scene3.instantiate()
-
-	# Positionner le fusil à l'emplacement de gun_position
-	var weapon_slot3 = $Weapon_slot3
-	gun_instance3.position = weapon_slot3.position
-
-	# Ajouter le fusil comme enfant du personnage
-	weapon_slot3.add_child(gun_instance3)
-	
-	#========================================
-	
-	gun_scene4 = preload("res://pistol.tscn")
-	gun_instance4 = gun_scene4.instantiate()
-
-	# Positionner le fusil à l'emplacement de gun_position
-	var weapon_slot4 = $Weapon_slot4
-	gun_instance4.position = weapon_slot4.position
-
-	# Ajouter le fusil comme enfant du personnage
-	weapon_slot4.add_child(gun_instance4)
 	
 
 
@@ -104,6 +91,7 @@ func _process(_delta: float) -> void:
 func take_damage(damage : int) -> void:
 	health = health - damage
 	show_damage(damage)
+	hp_bar.update_value(health, max_health)
 	$Sprite2D.modulate = Color(1, 0, 0)
 	await get_tree().create_timer(0.1).timeout
 	$Sprite2D.modulate = Color(1, 1, 1)
@@ -130,16 +118,15 @@ func show_damage(damage):
 	
 func gainxp(enemy_xp):
 	xp += enemy_xp
-
-func check_level_up():
-	while xp > xp_requirement:
+	if xp >= xp_requirement:
+		level_up_count += 1
 		level_up()
 	
-	print("current xp : ", xp)
-	print("xp requirement : ", xp_requirement)
+	xp_bar.update_value(xp, xp_requirement)
 
 func level_up():
 	level += 1
+	level_label.text = "Vous etes niveau : %d" % level
 	xp = xp - xp_requirement
 	xp_requirement += get_parent().current_wave
 	print("LEVEL UP : ", level)

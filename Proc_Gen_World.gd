@@ -28,7 +28,7 @@ var player : CharacterBody2D
 
 func _ready() -> void:
 	noise = noise_text.noise
-	player = get_node("Player")
+	player = get_node("Player") 
 	generate_world()
 	start_wave()
 
@@ -38,7 +38,11 @@ func _process(delta: float) -> void:
 
 func next_wave():
 	current_wave += 1
-	player.check_level_up()
+	print("you leveled up ", player.level_up_count, " times")
+	
+	player.wave_label.text = "Manche : %d" % current_wave
+	player.hp_bar.update_value(player.max_health, player.max_health)
+	player.level_up_count = 0
 	start_wave()
 
 func generate_world():
