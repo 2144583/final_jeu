@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbksp6ovjiapw"]
+
+[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/menu/Super Shiny.ttf" id="1_77ssy"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_eutck"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ni8o7"]
+font = ExtResource("1_77ssy")
+font_size = 62
+
+[sub_resource type="LabelSettings" id="LabelSettings_h4ohu"]
+font = ExtResource("1_77ssy")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_ewmo6"]
+font = ExtResource("1_77ssy")
+font_size = 36
+
+[node name="Upgrade_Menu" type="CanvasLayer"]
+layer = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.180005, 0.180005, 0.180005, 1)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.997
+offset_right = 4.0
+offset_bottom = -0.0560303
+texture = SubResource("CanvasTexture_eutck")
+
+[node name="title" type="Label" parent="."]
+offset_left = 97.0
+offset_top = 82.0
+offset_right = 771.0
+offset_bottom = 129.0
+text = "Vous avez monté de niveau : 300 fois"
+label_settings = SubResource("LabelSettings_ni8o7")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 465.0
+offset_top = 19.0
+offset_right = 698.0
+offset_bottom = 44.0
+text = "Manche completée"
+label_settings = SubResource("LabelSettings_h4ohu")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 269.0
+offset_top = 164.0
+offset_right = 910.0
+offset_bottom = 193.0
+text = "Choisissez une amélioration : 3 restante(s)"
+label_settings = SubResource("LabelSettings_ewmo6")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(580, 319)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 21.0
+offset_top = 258.0
+offset_right = 929.0
+offset_bottom = 958.0
+scale = Vector2(1.16234, 0.499854)
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 25
+
+[node name="Button" type="Button" parent="HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(300, 700)
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Button2" type="Button" parent="HBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(300, 700)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+
+[node name="Button3" type="Button" parent="HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(300, 700)
+layout_mode = 2

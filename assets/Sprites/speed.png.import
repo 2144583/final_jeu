@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpwbob06sqn1g"
-path="res://.godot/imported/vecteezy_gun_1199096.png-a04bfb0f2ccf7a1715949cd11cca3026.ctex"
+uid="uid://crmu5btxoppm6"
+path="res://.godot/imported/speed.png-1ad9ba4b653af5cd890875a6326466e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/vecteezy_gun_1199096.png"
-dest_files=["res://.godot/imported/vecteezy_gun_1199096.png-a04bfb0f2ccf7a1715949cd11cca3026.ctex"]
+source_file="res://assets/Sprites/speed.png"
+dest_files=["res://.godot/imported/speed.png-1ad9ba4b653af5cd890875a6326466e5.ctex"]
 
 [params]
 

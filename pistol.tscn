@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c4i1dpbos8gkl" path="res://ranged_weapon.tscn" id="1_ucwyj"]
 [ext_resource type="Script" path="res://pistol.gd" id="2_c2k2c"]
-[ext_resource type="Texture2D" uid="uid://bpwbob06sqn1g" path="res://assets/Sprites/vecteezy_gun_1199096.png" id="3_4gv36"]
+[ext_resource type="Texture2D" uid="uid://bpwbob06sqn1g" path="res://assets/Sprites/pistol.png" id="3_4gv36"]
 [ext_resource type="AudioStream" uid="uid://fb0tinc0feh6" path="res://assets/sounds/Pistol Sound Effects 9mm-[AudioTrimmer.com].wav" id="4_00eiy"]
 
 [sub_resource type="Animation" id="Animation_vfxl0"]
@@ -53,11 +53,11 @@ texture = ExtResource("3_4gv36")
 position = Vector2(31, -14)
 scale = Vector2(2.27938, 2.27938)
 
-[node name="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_l3q5b")
 }
 
-[node name="shoot" parent="." index="5"]
+[node name="shoot" parent="." index="4"]
 stream = ExtResource("4_00eiy")
 volume_db = -35.294

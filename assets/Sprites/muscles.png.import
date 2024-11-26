@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2qnpseaeow51"
-path="res://.godot/imported/11954360401073828605zeimusu_AK-47.svg.hi.png-35ce20cf7b7db6043d393349ad1ea73b.ctex"
+uid="uid://ckafjayqymysf"
+path="res://.godot/imported/muscles.png-bd959b30fc23c4702d2547b6411f6a4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/11954360401073828605zeimusu_AK-47.svg.hi.png"
-dest_files=["res://.godot/imported/11954360401073828605zeimusu_AK-47.svg.hi.png-35ce20cf7b7db6043d393349ad1ea73b.ctex"]
+source_file="res://assets/Sprites/muscles.png"
+dest_files=["res://.godot/imported/muscles.png-bd959b30fc23c4702d2547b6411f6a4e.ctex"]
 
 [params]
 

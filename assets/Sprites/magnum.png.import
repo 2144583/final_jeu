@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btjkli08vh82m"
-path="res://.godot/imported/sprites.png-aeff664c3f61ca467f9cb2501784bd6b.ctex"
+uid="uid://bspvsh0eba4um"
+path="res://.godot/imported/magnum.png-4880140d3b3ed8c5fec94a7e6c7d8fe0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Game_UI/sprites.png"
-dest_files=["res://.godot/imported/sprites.png-aeff664c3f61ca467f9cb2501784bd6b.ctex"]
+source_file="res://assets/Sprites/magnum.png"
+dest_files=["res://.godot/imported/magnum.png-4880140d3b3ed8c5fec94a7e6c7d8fe0.ctex"]
 
 [params]
 

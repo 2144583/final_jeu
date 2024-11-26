@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckafjayqymysf"
-path="res://.godot/imported/pngimg.com - muscle_PNG5.png-8deb6151a4256a7c0c56378eda783aab.ctex"
+uid="uid://bpwbob06sqn1g"
+path="res://.godot/imported/pistol.png-97eb1101276851be593334fa8c600cb6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/pngimg.com - muscle_PNG5.png"
-dest_files=["res://.godot/imported/pngimg.com - muscle_PNG5.png-8deb6151a4256a7c0c56378eda783aab.ctex"]
+source_file="res://assets/Sprites/pistol.png"
+dest_files=["res://.godot/imported/pistol.png-97eb1101276851be593334fa8c600cb6.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bspvsh0eba4um"
-path="res://.godot/imported/vecteezy_gun_1199092.png-50875c148b665a2162b5890e66eb2006.ctex"
+uid="uid://d2qnpseaeow51"
+path="res://.godot/imported/AK-47.png-95546a616ccf10bf8fc52f8aebf6c580.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/vecteezy_gun_1199092.png"
-dest_files=["res://.godot/imported/vecteezy_gun_1199092.png-50875c148b665a2162b5890e66eb2006.ctex"]
+source_file="res://assets/Sprites/AK-47.png"
+dest_files=["res://.godot/imported/AK-47.png-95546a616ccf10bf8fc52f8aebf6c580.ctex"]
 
 [params]
 

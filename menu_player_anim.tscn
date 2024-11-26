@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b5kq1xw80o5wg" path="res://assets/Sprites/player.png" id="1_px67s"]
 [ext_resource type="Texture2D" uid="uid://xnquk1fyejhl" path="res://assets/Sprites/pngtree-knife-clipart-png-image_6520363.png" id="2_mw2k6"]
-[ext_resource type="Texture2D" uid="uid://bpwbob06sqn1g" path="res://assets/Sprites/vecteezy_gun_1199096.png" id="3_c0tuc"]
+[ext_resource type="Texture2D" uid="uid://bpwbob06sqn1g" path="res://assets/Sprites/pistol.png" id="3_c0tuc"]
 
 [sub_resource type="Animation" id="Animation_on68p"]
 length = 3.0

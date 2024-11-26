@@ -37,6 +37,17 @@ func _process(delta: float) -> void:
 		next_wave()
 
 func next_wave():
+	# Arrêter le jeu
+	get_tree().paused = true
+	var upgrade_menu_scene = preload("res://Upgrade_Menu.tscn")
+	var upgrade_menu = upgrade_menu_scene.instantiate()
+
+	# Ajouter le menu comme enfant de la scène principale
+	add_child(upgrade_menu)
+
+	# Activer la caméra du menu
+	var camera = upgrade_menu.get_node("Camera2D")
+	camera.make_current()
 	current_wave += 1
 	print("you leveled up ", player.level_up_count, " times")
 	
