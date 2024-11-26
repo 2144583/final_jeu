@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var upgrade_manager_scene : PackedScene
 var upgrade_manager : Node
+@onready var player : CharacterBody2D = get_parent().get_node("Player")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	upgrade_manager_scene = preload("res://upgrade_manager.tscn")
@@ -22,11 +23,13 @@ func shuffle_upgrades():
 	var index = 0
 	for upgrade in random_upgrades:
 		var button = preload("res://upgrade_button.tscn").instantiate()
-		button.setup(upgrade)
+		button.setup(upgrade, player)
+		button.connect("upgrade_selected", Callable(self, "_on_upgrade_selected"))
 		var container = containers[index]
 		container.add_child(button)
 		index += 1
 
-
-func _process(delta: float) -> void:
-	pass
+func _on_upgrade_selected(upgrade: Upgrade) -> void:
+	
+	get_tree().paused = false
+	queue_free()

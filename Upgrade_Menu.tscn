@@ -18,7 +18,9 @@ font = ExtResource("1_77ssy")
 font_size = 36
 
 [node name="Upgrade_Menu" type="CanvasLayer"]
+process_mode = 2
 layer = 3
+follow_viewport_enabled = true
 script = ExtResource("1_1hj4i")
 
 [node name="TextureRect" type="TextureRect" parent="."]

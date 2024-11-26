@@ -25,10 +25,12 @@ var enemy_stats = {
 var active_enemies = []
 
 var player : CharacterBody2D
+signal player_ready(player)
 
 func _ready() -> void:
 	noise = noise_text.noise
 	player = get_node("Player") 
+	emit_signal("player_ready", $Player)
 	generate_world()
 	start_wave()
 
@@ -72,7 +74,7 @@ func start_wave():
 	enemy_stats["damage"] = current_wave
 	enemy_stats["speed"] += current_wave * 0.1
 	enemy_stats["xp"] +=  current_wave * 0.1
-	spawn_Timer.wait_time -= 0.005
+	spawn_Timer.wait_time -= 0.01
 	spawn_Timer.start(spawn_Timer.wait_time)
 
 func enemy_spawner():

@@ -4,23 +4,6 @@
 [ext_resource type="Script" path="res://ak_47.gd" id="2_cri6a"]
 [ext_resource type="Texture2D" uid="uid://d2qnpseaeow51" path="res://assets/Sprites/AK-47.png" id="3_h6fbf"]
 
-[sub_resource type="Animation" id="Animation_8thax"]
-resource_name = "shoot"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(17, 7), Vector2(13, 7)]
-}
-
 [sub_resource type="Animation" id="Animation_eb8u5"]
 length = 0.001
 tracks/0/type = "value"
@@ -33,7 +16,23 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(17, 7)]
+"values": [Vector2(2, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_8thax"]
+resource_name = "shoot"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 10), Vector2(-10, 10)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oparr"]
@@ -46,12 +45,12 @@ _data = {
 script = ExtResource("2_cri6a")
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(17, 7)
+position = Vector2(2, 10)
 scale = Vector2(0.215804, 0.215804)
 texture = ExtResource("3_h6fbf")
 
 [node name="Muzzle" parent="." index="1"]
-position = Vector2(85, -4)
+position = Vector2(69, -1)
 
 [node name="AnimationPlayer" parent="." index="3"]
 libraries = {

@@ -6,7 +6,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_r1lde"]
 font = ExtResource("3_ggppi")
-font_size = 63
+font_size = 100
 
 [node name="HP_Bar" type="TextureProgressBar"]
 offset_right = 624.0
@@ -18,10 +18,10 @@ texture_progress = ExtResource("2_cl6bj")
 [node name="HP_Label" type="Label" parent="."]
 texture_filter = 3
 layout_mode = 0
-offset_left = 139.0
-offset_top = 56.0
-offset_right = 391.0
-offset_bottom = 163.0
-scale = Vector2(1.86795, 4.0974)
+offset_left = 47.4234
+offset_top = 74.8484
+offset_right = 357.423
+offset_bottom = 151.848
+scale = Vector2(0.937154, 1.90439)
 text = "HP : 100"
 label_settings = SubResource("LabelSettings_r1lde")

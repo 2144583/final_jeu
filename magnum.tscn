@@ -4,23 +4,6 @@
 [ext_resource type="Script" path="res://magnum.gd" id="2_mpe5a"]
 [ext_resource type="Texture2D" uid="uid://bspvsh0eba4um" path="res://assets/Sprites/magnum.png" id="3_pnqie"]
 
-[sub_resource type="Animation" id="Animation_xbkme"]
-resource_name = "shoot"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -0.767945]
-}
-
 [sub_resource type="Animation" id="Animation_thh7k"]
 length = 0.001
 tracks/0/type = "value"
@@ -36,6 +19,22 @@ tracks/0/keys = {
 "values": [0.0]
 }
 
+[sub_resource type="Animation" id="Animation_xbkme"]
+resource_name = "shoot"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.767945, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1qket"]
 _data = {
 "RESET": SubResource("Animation_thh7k"),
@@ -43,15 +42,16 @@ _data = {
 }
 
 [node name="magnum" instance=ExtResource("1_bpcxw")]
+scale = Vector2(1.74861, 1.74861)
 script = ExtResource("2_mpe5a")
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(7, 2)
+position = Vector2(-7.62939e-06, 0)
 scale = Vector2(0.0167012, 0.0167012)
 texture = ExtResource("3_pnqie")
 
 [node name="Muzzle" parent="." index="1"]
-position = Vector2(27, -5)
+position = Vector2(21.1597, -7.43449)
 
 [node name="AnimationPlayer" parent="." index="3"]
 libraries = {

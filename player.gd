@@ -9,6 +9,9 @@ var gun_scene: PackedScene
 # Variable pour stocker l'instance du fusil
 var gun_instance: Node2D
 
+@onready var weapon_slots = [$Weapon_slot1, $Weapon_slot2, $Weapon_slot3, $Weapon_slot4]
+
+
 #Basic player stats here
 var max_health = 5
 var health = max_health
@@ -40,20 +43,40 @@ func _ready():
 	wave_label.text = "Manche : 1"
 	level_label.text = "niveau : 1"
 	
-	
-	add_to_group("player")
-	
 	gun_scene = load("res://pistol.tscn")
 	gun_instance = gun_scene.instantiate()
 
 	# Positionner le fusil à l'emplacement de gun_position
-	var weapon_slot = $Weapon_slot1
-	gun_instance.position = weapon_slot.position
+	
+	gun_instance.position = weapon_slots[0].position
 
 	# Ajouter le fusil comme enfant du personnage
-	weapon_slot.add_child(gun_instance)
+	weapon_slots[0].add_child(gun_instance)
+	
+	
+	add_to_group("player")
 
+func equip_weapon(weapon_name: String) -> void:
+	gun_scene = load("res://%s.tscn" % weapon_name)
+	if not gun_scene:
+		print("Weapon '%s' introuvable !" % weapon_name)
+		return
+	
+	var free_slot = get_free_weapon_slot()
+	if not free_slot:
+		print("Tous les weapon slots sont occupés.")
+		return
 
+	var gun_instance = gun_scene.instantiate()
+
+	gun_instance.position = Vector2.ZERO
+	free_slot.add_child(gun_instance)
+
+func get_free_weapon_slot() -> Node2D:
+	for slot in weapon_slots:
+		if slot.get_child_count() == 0:  # Vérifie si le slot est vide
+			return slot
+	return null
 
 func _process(_delta: float) -> void:
 	
@@ -120,7 +143,7 @@ func level_up():
 	level += 1
 	level_label.text = "niveau : %d" % level
 	xp = xp - xp_requirement
-	xp_requirement += get_parent().current_wave
+	xp_requirement += 5 + (get_parent().current_wave * 0.1)
 	print("LEVEL UP : ", level)
 
 func die():

@@ -6,7 +6,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_4e0iw"]
 font = ExtResource("3_uow4t")
-font_size = 63
+font_size = 100
 
 [node name="XP_Bar" type="TextureProgressBar"]
 offset_right = 624.0
@@ -17,10 +17,10 @@ texture_progress = ExtResource("2_arvsd")
 
 [node name="XP_Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 106.667
-offset_top = 42.1053
-offset_right = 393.667
-offset_bottom = 90.1053
-scale = Vector2(1.33992, 4.22687)
+offset_left = 26.6667
+offset_top = 31.5789
+offset_right = 482.667
+offset_bottom = 108.579
+scale = Vector2(1.00507, 3.17057)
 text = "XP : 0 / 100"
 label_settings = SubResource("LabelSettings_4e0iw")
