@@ -1,4 +1,4 @@
-extends Upgrade
+extends Node
 var all_upgrades = [
 	Upgrade.new(
 		"Augmentation des dégâts",
@@ -31,7 +31,7 @@ var all_upgrades = [
 	Upgrade.new(
 		"Gros pot de PEANUT BUTTAH",
 		"degats x2.5",
-		preload("res://assets/Sprites/nutella.png"),
+		preload("res://assets/Sprites/peanut_butter.png"),
 		Callable(self, "peanut_butter_damage_boost"),
 		3
 	),
@@ -58,8 +58,8 @@ var all_upgrades = [
 	),
 	Upgrade.new(
 		"jelly time",
-		"+20% knockback (ca en a pas l'air mais le knockback, c'est vraiment fort) ",
-		preload("res://assets/Sprites/pistol.png"),
+		"+20% knockback (ca en a pas l'air mais le knockback,\n c'est vraiment fort) ",
+		preload("res://assets/Sprites/jelly-strawberry.png"),
 		Callable(self, "player_equip_pistol"),
 		4
 	),

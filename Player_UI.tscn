@@ -13,7 +13,7 @@ font_size = 62
 
 [sub_resource type="LabelSettings" id="LabelSettings_6gfdh"]
 font = ExtResource("3_5bjj5")
-font_size = 46
+font_size = 62
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -36,18 +36,18 @@ nine_patch_stretch = true
 script = ExtResource("4_1ofdf")
 
 [node name="wave" type="Label" parent="."]
-offset_left = 400.0
-offset_top = 36.0
-offset_right = 637.0
-offset_bottom = 83.0
+offset_left = 825.0
+offset_top = 32.0
+offset_right = 1062.0
+offset_bottom = 79.0
 text = "Manche : "
 label_settings = SubResource("LabelSettings_5vs7n")
 script = ExtResource("6_qiria")
 
 [node name="level" type="Label" parent="."]
-offset_left = 280.0
-offset_top = 107.0
-offset_right = 631.0
-offset_bottom = 143.0
-text = "Vous etes niveau : "
+offset_left = 828.0
+offset_top = 99.0
+offset_right = 1179.0
+offset_bottom = 146.0
+text = "niveau : "
 label_settings = SubResource("LabelSettings_6gfdh")

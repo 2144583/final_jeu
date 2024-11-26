@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbksp6ovjiapw"]
+[gd_scene load_steps=7 format=3 uid="uid://cbksp6ovjiapw"]
 
+[ext_resource type="Script" path="res://upgrade_menu.gd" id="1_1hj4i"]
 [ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/menu/Super Shiny.ttf" id="1_77ssy"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_eutck"]
@@ -18,6 +19,7 @@ font_size = 36
 
 [node name="Upgrade_Menu" type="CanvasLayer"]
 layer = 3
+script = ExtResource("1_1hj4i")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.180005, 0.180005, 0.180005, 1)
@@ -56,31 +58,26 @@ label_settings = SubResource("LabelSettings_ewmo6")
 position = Vector2(580, 319)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 21.0
-offset_top = 258.0
-offset_right = 929.0
-offset_bottom = 958.0
-scale = Vector2(1.16234, 0.499854)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = 226.0
+offset_right = -45.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_right = 25
 
-[node name="Button" type="Button" parent="HBoxContainer/MarginContainer2"]
-custom_minimum_size = Vector2(300, 700)
-layout_mode = 2
-
 [node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
-layout_mode = 2
-
-[node name="Button2" type="Button" parent="HBoxContainer/MarginContainer3"]
-custom_minimum_size = Vector2(300, 700)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 25
 
-[node name="Button3" type="Button" parent="HBoxContainer/MarginContainer"]
-custom_minimum_size = Vector2(300, 700)
-layout_mode = 2
+[node name="Node2D" type="Node2D" parent="."]

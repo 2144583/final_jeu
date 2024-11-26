@@ -296,6 +296,7 @@ collision_visibility_mode = 1
 position = Vector2(12000, 12000)
 
 [node name="Enemy_Spawn_Timer" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 
 [connection signal="timeout" from="Enemy_Spawn_Timer" to="." method="_on_timer_timeout"]

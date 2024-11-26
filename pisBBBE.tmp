@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtogf4bk85fqo"]
+
+[ext_resource type="PackedScene" uid="uid://c4i1dpbos8gkl" path="res://ranged_weapon.tscn" id="1_ucwyj"]
+[ext_resource type="Script" path="res://pistol.gd" id="2_c2k2c"]
+[ext_resource type="Texture2D" uid="uid://bpwbob06sqn1g" path="res://assets/Sprites/pistol.png" id="3_4gv36"]
+[ext_resource type="AudioStream" uid="uid://fb0tinc0feh6" path="res://assets/sounds/Pistol Sound Effects 9mm-[AudioTrimmer.com].wav" id="4_00eiy"]
+
+[sub_resource type="Animation" id="Animation_vfxl0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_d0fwe"]
+resource_name = "shoot"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -0.443314, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l3q5b"]
+_data = {
+"RESET": SubResource("Animation_vfxl0"),
+"shoot": SubResource("Animation_d0fwe")
+}
+
+[node name="Pistol" instance=ExtResource("1_ucwyj")]
+script = ExtResource("2_c2k2c")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.0311332, 0.0311332)
+texture = ExtResource("3_4gv36")
+
+[node name="Muzzle" parent="." index="1"]
+position = Vector2(31, -14)
+scale = Vector2(2.27938, 2.27938)
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_l3q5b")
+}
+
+[node name="shoot" parent="." index="4"]
+stream = ExtResource("4_00eiy")
+volume_db = -35.294

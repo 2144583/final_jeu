@@ -6,14 +6,8 @@ class_name Player
 @onready var _animation_player = $AnimationPlayer
 
 var gun_scene: PackedScene
-var gun_scene2: PackedScene
-var gun_scene3: PackedScene
-var gun_scene4: PackedScene
 # Variable pour stocker l'instance du fusil
 var gun_instance: Node2D
-var gun_instance2: Node2D
-var gun_instance3: Node2D
-var gun_instance4: Node2D
 
 #Basic player stats here
 var max_health = 5
@@ -44,12 +38,12 @@ func _ready():
 	level_label = $CanvasLayer.get_child(3)
 	
 	wave_label.text = "Manche : 1"
-	level_label.text = "Vous etes niveau : 1"
+	level_label.text = "niveau : 1"
 	
 	
 	add_to_group("player")
 	
-	gun_scene = preload("res://pistol.tscn")
+	gun_scene = load("res://pistol.tscn")
 	gun_instance = gun_scene.instantiate()
 
 	# Positionner le fusil à l'emplacement de gun_position
@@ -58,8 +52,6 @@ func _ready():
 
 	# Ajouter le fusil comme enfant du personnage
 	weapon_slot.add_child(gun_instance)
-	
-	
 
 
 
@@ -126,7 +118,7 @@ func gainxp(enemy_xp):
 
 func level_up():
 	level += 1
-	level_label.text = "Vous etes niveau : %d" % level
+	level_label.text = "niveau : %d" % level
 	xp = xp - xp_requirement
 	xp_requirement += get_parent().current_wave
 	print("LEVEL UP : ", level)
