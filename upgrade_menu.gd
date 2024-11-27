@@ -3,24 +3,48 @@ extends CanvasLayer
 var upgrade_manager_scene : PackedScene
 var upgrade_manager : Node
 @onready var player : CharacterBody2D = get_parent().get_node("Player")
+var upgrade_count : int
+@onready var upgrade_counter_label = $upgradecount/counter
+@onready var level_up_counter_label = $levelupCounter/levelcounter
+@onready var containers = [
+		$HBoxContainer/MarginContainer,
+		$HBoxContainer/MarginContainer2,
+		$HBoxContainer/MarginContainer3
+	]
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	upgrade_manager_scene = preload("res://upgrade_manager.tscn")
 	upgrade_manager = upgrade_manager_scene.instantiate()
 	add_child(upgrade_manager)
-	shuffle_upgrades()
+	upgrade_count = player.level_up_count
+	upgrade_counter_label.text = ("%s restante(s)" % upgrade_count) 
+	level_up_counter_label.text = ("%s fois" % player.level_up_count) 
 	
+	
+	check_level_ups()
+
+func check_level_ups():
+	if player.level_up_count > 0:
+		shuffle_upgrades()	
+	else:
+		get_tree().paused = false
+		queue_free()
+
 func shuffle_upgrades():
+	
+	var index = 0
 	var shuffled_upgrades = upgrade_manager.all_upgrades
 	shuffled_upgrades.shuffle()
 	var random_upgrades = shuffled_upgrades.slice(0, 3)
 	
-	var containers = [
-		$HBoxContainer/MarginContainer,
-		$HBoxContainer/MarginContainer2,
-		$HBoxContainer/MarginContainer3
-	]
-	var index = 0
+	upgrade_count -= 1
+	
+	for container in containers:
+		if container.get_child_count() == 1:
+			var container_child = container.get_child(0)
+			container_child.queue_free()
+	
 	for upgrade in random_upgrades:
 		var button = preload("res://upgrade_button.tscn").instantiate()
 		button.setup(upgrade, player)
@@ -30,6 +54,9 @@ func shuffle_upgrades():
 		index += 1
 
 func _on_upgrade_selected(upgrade: Upgrade) -> void:
-	
-	get_tree().paused = false
-	queue_free()
+	if upgrade_count == 0:
+		get_tree().paused = false
+		queue_free()
+	else:
+		upgrade_counter_label.text = ("%s restante(s)" % upgrade_count) 
+		shuffle_upgrades()

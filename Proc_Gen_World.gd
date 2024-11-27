@@ -74,7 +74,7 @@ func start_wave():
 	enemy_stats["damage"] = current_wave
 	enemy_stats["speed"] += current_wave * 0.1
 	enemy_stats["xp"] +=  current_wave * 0.1
-	spawn_Timer.wait_time -= 0.01
+	spawn_Timer.wait_time -= 0.02
 	spawn_Timer.start(spawn_Timer.wait_time)
 
 func enemy_spawner():

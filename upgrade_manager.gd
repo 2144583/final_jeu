@@ -54,7 +54,7 @@ var all_upgrades = [
 		"pew pew",
 		preload("res://assets/Sprites/pistol.png"),
 		Callable(self, "player_equip_pistol"),
-		2
+		3
 	),
 	Upgrade.new(
 		"magnum",
