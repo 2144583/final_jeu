@@ -13,7 +13,7 @@ var gun_instance: Node2D
 
 
 #Basic player stats here
-var max_health = 5
+var max_health = 10
 var health = max_health
 var speed: float = 300.0
 var push_force = 20
@@ -30,6 +30,7 @@ var hp_bar : TextureProgressBar
 var xp_bar : TextureProgressBar
 var wave_label : Label
 var level_label : Label
+var time_left_label : Label
 
 func _ready():
 	
@@ -39,6 +40,7 @@ func _ready():
 	xp_bar.update_value(xp, xp_requirement)
 	wave_label = $CanvasLayer.get_child(2)
 	level_label = $CanvasLayer.get_child(3)
+	time_left_label = $CanvasLayer.get_child(4)
 	
 	wave_label.text = "Manche : 1"
 	level_label.text = "niveau : 1"
@@ -58,13 +60,9 @@ func _ready():
 
 func equip_weapon(weapon_name: String) -> void:
 	gun_scene = load("res://%s.tscn" % weapon_name)
-	if not gun_scene:
-		print("Weapon '%s' introuvable !" % weapon_name)
-		return
 	
 	var free_slot = get_free_weapon_slot()
 	if not free_slot:
-		print("Tous les weapon slots sont occupés.")
 		return
 
 	var gun_instance = gun_scene.instantiate()

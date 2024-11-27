@@ -16,7 +16,7 @@ var all_upgrades = [
 	),
 	Upgrade.new(
 		"Bonus de vie",
-		"+15HP",
+		"+10HP",
 		preload("res://assets/Sprites/poumon.png"),
 		Callable(self, "HP_up"),
 		1
@@ -30,7 +30,7 @@ var all_upgrades = [
 	),
 	Upgrade.new(
 		"Petit pot de nutella",
-		"+75% de dégâts",
+		"+50% de dégâts",
 		preload("res://assets/Sprites/nutella.png"),
 		Callable(self, "nutella_damage_boost"),
 		2
@@ -40,14 +40,14 @@ var all_upgrades = [
 		"degats x2.5",
 		preload("res://assets/Sprites/peanut_butter.png"),
 		Callable(self, "peanut_butter_damage_boost"),
-		3
+		5
 	),
 	Upgrade.new(
 		"AK-47",
 		"RATATATATATATA",
 		preload("res://assets/Sprites/AK-47.png"),
 		Callable(self, "player_equip_ak"),
-		4
+		6
 	),
 	Upgrade.new(
 		"pistol",
@@ -61,14 +61,14 @@ var all_upgrades = [
 		"BANG BANG",
 		preload("res://assets/Sprites/magnum.png"),
 		Callable(self, "player_equip_magnum"),
-		3
+		4
 	),
 	Upgrade.new(
 		"jelly time",
 		"+20% portee",
 		preload("res://assets/Sprites/jelly-strawberry.png"),
 		Callable(self, "increase_range"),
-		4
+		1
 	),
 ]
 

@@ -12,6 +12,7 @@ var source_id = 0
 
 @export var current_wave : int = 1
 @onready var spawn_Timer : Timer = $Enemy_Spawn_Timer
+@onready var round_duration_Timer : Timer = $Round_Duration
 var enemy_spawn_speed : float = 1
 var enemies_to_spawn : int
 var ennemies_left : int
@@ -35,23 +36,30 @@ func _ready() -> void:
 	start_wave()
 
 func _process(delta: float) -> void:
-	if active_enemies.size() == 0 and spawn_Timer.is_stopped():
-		next_wave()
+	player.time_left_label.text = "Temps restant : %.1f" % round_duration_Timer.time_left
+
 
 func next_wave():
 	# Arrêter le jeu
-	get_tree().paused = true
-	var upgrade_menu_scene = preload("res://Upgrade_Menu.tscn")
-	var upgrade_menu = upgrade_menu_scene.instantiate()
+	spawn_Timer.stop()
+	round_duration_Timer.stop()
+	for enemy in active_enemies:
+		enemy.queue_free()  # Supprime l'ennemi de la scène
+	active_enemies.clear()
+	if player.level_up_count > 0:
+		get_tree().paused = true
+		var upgrade_menu_scene = preload("res://Upgrade_Menu.tscn")
+		var upgrade_menu = upgrade_menu_scene.instantiate()
 
-	# Ajouter le menu comme enfant de la scène principale
-	add_child(upgrade_menu)
+		# Ajouter le menu comme enfant de la scène principale
+		add_child(upgrade_menu)
 
-	# Activer la caméra du menu
-	var camera = upgrade_menu.get_node("Camera2D")
-	camera.make_current()
+		# Activer la caméra du menu
+		var camera = upgrade_menu.get_node("Camera2D")
+		camera.make_current()
+	
+	await get_tree().create_timer(2).timeout
 	current_wave += 1
-	print("you leveled up ", player.level_up_count, " times")
 	
 	player.wave_label.text = "Manche : %d" % current_wave
 	player.hp_bar.update_value(player.max_health, player.max_health)
@@ -68,18 +76,19 @@ func generate_world():
 				tile_map.set_cell(Vector2(x, y), source_id, Vector2(randi_range(0, 15), randi_range(0, 7)))
 
 func start_wave():
-	print("current wave ", current_wave)
-	enemies_to_spawn = 5 + current_wave * 2
 	enemy_stats["health"] = current_wave * 2
 	enemy_stats["damage"] = current_wave
-	enemy_stats["speed"] += current_wave * 0.1
-	enemy_stats["xp"] +=  current_wave * 0.1
-	spawn_Timer.wait_time -= 0.02
+	if current_wave < 15:
+		enemy_stats["speed"] += current_wave * 0.05
+	else:
+		enemy_stats["health"] += current_wave
+	enemy_stats["xp"] +=  current_wave * 0.5
+	round_duration_Timer.start(round_duration_Timer.wait_time)
 	spawn_Timer.start(spawn_Timer.wait_time)
 
 func enemy_spawner():
 	var enemy = load("res://enemy.tscn").instantiate()
-	enemy.position = get_node("Player").position + Vector2(500, 0).rotated(randf_range(0, 2*PI))
+	enemy.position = get_node("Player").position + Vector2(randf_range(500, 1500), 0).rotated(randf_range(0, 2*PI))
 	enemy.health = enemy_stats["health"]
 	enemy.damage = enemy_stats["damage"]
 	enemy.speed = enemy_stats["speed"]
@@ -91,12 +100,9 @@ func on_enemy_died(enemy):
 	active_enemies.erase(enemy)
 	
 
-func check_enemy_spawn():
-	if enemies_to_spawn > 0:
-		enemy_spawner()
-		enemies_to_spawn -= 1
-	else:
-		spawn_Timer.stop()
-
 func _on_timer_timeout() -> void:
-	check_enemy_spawn()
+	enemy_spawner()
+
+
+func _on_round_duration_timeout() -> void:
+	next_wave()

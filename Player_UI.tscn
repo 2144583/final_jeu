@@ -5,7 +5,6 @@
 [ext_resource type="Script" path="res://hp_bar.gd" id="2_265cv"]
 [ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/menu/Super Shiny.ttf" id="3_5bjj5"]
 [ext_resource type="Script" path="res://xp_bar.gd" id="4_1ofdf"]
-[ext_resource type="Script" path="res://wave.gd" id="6_qiria"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5vs7n"]
 font = ExtResource("3_5bjj5")
@@ -14,6 +13,10 @@ font_size = 62
 [sub_resource type="LabelSettings" id="LabelSettings_6gfdh"]
 font = ExtResource("3_5bjj5")
 font_size = 62
+
+[sub_resource type="LabelSettings" id="LabelSettings_q1xa0"]
+font = ExtResource("3_5bjj5")
+font_size = 32
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -41,7 +44,6 @@ offset_right = 1062.0
 offset_bottom = 79.0
 text = "Manche : "
 label_settings = SubResource("LabelSettings_5vs7n")
-script = ExtResource("6_qiria")
 
 [node name="level" type="Label" parent="."]
 offset_left = 828.0
@@ -50,3 +52,11 @@ offset_right = 1179.0
 offset_bottom = 146.0
 text = "niveau : "
 label_settings = SubResource("LabelSettings_6gfdh")
+
+[node name="enemies_left" type="Label" parent="."]
+offset_left = 262.0
+offset_top = 38.0
+offset_right = 702.0
+offset_bottom = 85.0
+text = "temps restant :"
+label_settings = SubResource("LabelSettings_q1xa0")
