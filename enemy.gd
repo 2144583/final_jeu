@@ -11,6 +11,8 @@ var damage
 var speed
 var xp = 1
 
+signal damage_received(amount, position)
+
 func _ready() -> void:
 	animator = $AnimationPlayer
 	add_to_group("enemies")
@@ -27,30 +29,34 @@ func _physics_process(_delta: float) -> void:
 
 func take_damage(bullet: Bullet) -> void:
 	health = health - bullet.damage
+	emit_signal("damage_received", bullet.damage, global_position)
 	if health <= 0:
 		die()
-	show_damage(bullet.damage)
 	$Sprite2D.modulate = Color(1, 0, 0)
 	await get_tree().create_timer(0.1).timeout
 	$Sprite2D.modulate = Color(1, 1, 1)
 	
 
 func show_damage(bullet_damage):
-	var label = Label.new()
-	label.text = str(bullet_damage)
-	label.label_settings = LabelSettings.new()
+	var damage = Label.new()
+	damage.text = str(bullet_damage)
+	damage.label_settings = LabelSettings.new()
 	
-	label.label_settings.font_size = 32
-	label.label_settings.font = preload("res://assets/menu/Super Shiny.ttf")
+	damage.label_settings.font_size = 32
+	damage.label_settings.font = preload("res://assets/menu/Super Shiny.ttf")
 	
-	add_child(label)
-	label.position = Vector2(0, -50)
+	
+	add_child(damage)
+	damage.global_position = global_position + damage.position
 	
 	var tween = create_tween()
-	tween.tween_property(label, "position", label.position + Vector2(randf_range(-50, 50), -30), 0.5) 
-	tween.tween_property(label, "modulate:a", 0, 0.5)
+	tween.tween_property(damage, "position", damage.position + Vector2(randf_range(-50, 50), -30), 0.5) 
+	tween.tween_property(damage, "modulate:a", 0, 0.5)
+	
+
+	
 	await tween.finished
-	label.queue_free()  
+	damage.queue_free()  
 
 func die() -> void:
 	is_dead = true

@@ -35,6 +35,7 @@ func _ready() -> void:
 	generate_world()
 	start_wave()
 
+
 func _process(delta: float) -> void:
 	player.time_left_label.text = "Temps restant : %.1f" % round_duration_Timer.time_left
 
@@ -62,6 +63,7 @@ func next_wave():
 	current_wave += 1
 	
 	player.wave_label.text = "Manche : %d" % current_wave
+	player.health = player.max_health
 	player.hp_bar.update_value(player.max_health, player.max_health)
 	player.level_up_count = 0
 	start_wave()
@@ -94,7 +96,29 @@ func enemy_spawner():
 	enemy.speed = enemy_stats["speed"]
 	add_child(enemy)
 	active_enemies.append(enemy)
+	enemy.connect("damage_received", Callable(self, "_on_enemy_damage_received"))
 	enemy.connect("enemy_died", Callable(self, "on_enemy_died"))
+
+func _on_enemy_damage_received(amount, position):
+	# Créer le label pour afficher les dégâts
+	var damage = Label.new()
+	damage.text = str(amount)
+	damage.label_settings = LabelSettings.new()
+	damage.label_settings.font_size = 32
+	damage.label_settings.font = preload("res://assets/menu/Super Shiny.ttf")
+
+	# Ajouter le label au World
+	add_child(damage)
+	damage.global_position = position
+	
+	var tween = create_tween()
+	tween.tween_property(damage, "position", damage.position + Vector2(randf_range(-75, 75), -30), 0.5) 
+	tween.tween_property(damage, "modulate:a", 0, 0.5)
+	
+
+	
+	await tween.finished
+	damage.queue_free()  
 
 func on_enemy_died(enemy):
 	active_enemies.erase(enemy)
