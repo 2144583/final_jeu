@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://w7womc4oysjl"
+path="res://.godot/imported/Falcon 40 EPIC menu music.mp3-37ad6e44849086d2c057ad7d5e6aa4b3.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Falcon 40 EPIC menu music.mp3"
+dest_files=["res://.godot/imported/Falcon 40 EPIC menu music.mp3-37ad6e44849086d2c057ad7d5e6aa4b3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

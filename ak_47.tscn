@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8ccr218ce51h"]
+[gd_scene load_steps=8 format=3 uid="uid://b8ccr218ce51h"]
 
 [ext_resource type="PackedScene" uid="uid://c4i1dpbos8gkl" path="res://ranged_weapon.tscn" id="1_4v4rc"]
 [ext_resource type="Script" path="res://ak_47.gd" id="2_cri6a"]
 [ext_resource type="Texture2D" uid="uid://d2qnpseaeow51" path="res://assets/Sprites/AK-47.png" id="3_h6fbf"]
+[ext_resource type="AudioStream" uid="uid://dajghre26syrm" path="res://assets/sounds/395572__dwightsabeast__ak-47-firing (1).wav" id="4_4u6qx"]
 
 [sub_resource type="Animation" id="Animation_eb8u5"]
 length = 0.001
@@ -56,3 +57,6 @@ position = Vector2(69, -1)
 libraries = {
 "": SubResource("AnimationLibrary_oparr")
 }
+
+[node name="shoot" parent="." index="4"]
+stream = ExtResource("4_4u6qx")

@@ -11,7 +11,6 @@ custom_minimum_size = Vector2(300, 0)
 offset_right = 300.0
 offset_bottom = 300.0
 scale = Vector2(1, 1.6)
-action_mode = 0
 text = "quand les toast sont toaster cest par ce que les toasts sont toaster"
 autowrap_mode = 2
 script = ExtResource("1_x20b8")

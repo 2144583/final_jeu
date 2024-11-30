@@ -3,9 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://c2g45o8x25r8a" path="res://assets/Sprites/mainmenubg.jpg" id="1_t68ko"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_wy16w"]
 [ext_resource type="PackedScene" uid="uid://bihukwfdh4h6g" path="res://menu_player_anim.tscn" id="3_wrv44"]
-[ext_resource type="AudioStream" uid="uid://w7womc4oysjl" path="res://assets/menu/Falcon 40 EPIC menu music.mp3" id="4_hs2vw"]
-[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/menu/Super Shiny.ttf" id="5_mgon4"]
-[ext_resource type="Theme" uid="uid://2t35brmxmgar" path="res://assets/menu/button_theme.tres" id="5_q5ieq"]
+[ext_resource type="AudioStream" uid="uid://w7womc4oysjl" path="res://assets/sounds/Falcon 40 EPIC menu music.mp3" id="4_hs2vw"]
+[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/Fonts/Super Shiny.ttf" id="5_mgon4"]
+[ext_resource type="Theme" uid="uid://2t35brmxmgar" path="res://assets/Main_menu/button_theme.tres" id="5_q5ieq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jqdlx"]
 font = ExtResource("5_mgon4")
@@ -50,18 +50,38 @@ max_lines_visible = 4
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_hs2vw")
 autoplay = true
+bus = &"music"
 parameters/looping = true
 
 [node name="AnimationPlayer" parent="." instance=ExtResource("3_wrv44")]
 
-[node name="Button" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = -458.0
-offset_top = 381.0
-offset_right = -57.0
-offset_bottom = 504.0
+offset_left = -405.0
+offset_top = 258.0
+offset_right = -105.0
+offset_bottom = 472.0
+theme_override_constants/separation = 20
+
+[node name="Play_Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("5_q5ieq")
 action_mode = 0
 text = "Play"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="Settings_Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_q5ieq")
+action_mode = 0
+text = "Settings"
+
+[node name="Quit_button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_q5ieq")
+action_mode = 0
+text = "Quit
+"
+
+[connection signal="pressed" from="VBoxContainer/Play_Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Settings_Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit_button" to="." method="_on_quit_button_pressed"]

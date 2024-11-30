@@ -20,6 +20,7 @@ func _ready() -> void:
 	upgrade_count = player.level_up_count
 	upgrade_counter_label.text = ("%s restante(s)" % upgrade_count) 
 	level_up_counter_label.text = ("%s fois" % player.level_up_count) 
+	$AudioStreamPlayer.play()
 	
 	
 	check_level_ups()

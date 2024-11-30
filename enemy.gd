@@ -46,7 +46,7 @@ func show_damage(bullet_damage):
 	damage.label_settings = LabelSettings.new()
 	
 	damage.label_settings.font_size = 32
-	damage.label_settings.font = preload("res://assets/menu/Super Shiny.ttf")
+	damage.label_settings.font = preload("res://assets/Fonts/Super Shiny.ttf")
 	
 	
 	add_child(damage)

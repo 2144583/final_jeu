@@ -1,14 +1,11 @@
 extends CharacterBody2D
 
 class_name Player
-# Vitesse de déplacement du personnage
 
 @onready var _animation_player = $AnimationPlayer
 
 var gun_scene: PackedScene
-# Variable pour stocker l'instance du fusil
 var gun_instance: Node2D
-
 @onready var weapon_slots = [$Weapon_slot1, $Weapon_slot2, $Weapon_slot3, $Weapon_slot4]
 
 
@@ -31,6 +28,7 @@ var xp_bar : TextureProgressBar
 var wave_label : Label
 var level_label : Label
 var time_left_label : Label
+var fps : Label
 
 func _ready():
 	
@@ -41,6 +39,7 @@ func _ready():
 	wave_label = $CanvasLayer.get_child(2)
 	level_label = $CanvasLayer.get_child(3)
 	time_left_label = $CanvasLayer.get_child(4)
+	fps = $CanvasLayer/FPS
 	
 	wave_label.text = "Manche : 1"
 	level_label.text = "niveau : 1"
@@ -89,6 +88,16 @@ func _process(_delta: float) -> void:
 	velocity = input_vector * speed
 	move_and_slide()
 	
+	if Input.is_action_just_pressed("debug"):
+		fps.visible = !$CanvasLayer/FPS.visible
+	
+	if Input.is_action_just_pressed("pause"):
+		var pause_scene = preload("res://pause_menu.tscn")
+		var pause_menu = pause_scene.instantiate()
+		get_parent().add_child(pause_menu)
+		get_parent().get_tree().paused = true
+		
+	
 	if input_vector != Vector2.ZERO:
 		if not _animation_player.is_playing(): 
 			_animation_player.play("walk") 
@@ -116,7 +125,7 @@ func show_damage(damage):
 	label.label_settings = LabelSettings.new()
 	
 	label.label_settings.font_size = 32
-	label.label_settings.font = preload("res://assets/menu/Super Shiny.ttf")
+	label.label_settings.font = preload("res://assets/Fonts/Super Shiny.ttf")
 	
 	label.modulate = Color(1, 0.1, 0)
 	label.text = str(damage)
@@ -145,4 +154,7 @@ func level_up():
 	print("LEVEL UP : ", level)
 
 func die():
-	print("ono")
+	var losing_scene = preload("res://losing_menu.tscn")
+	var losing_menu = losing_scene.instantiate()
+	get_parent().add_child(losing_menu)
+	get_parent().get_tree().paused = true

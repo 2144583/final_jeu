@@ -34,6 +34,7 @@ func _ready() -> void:
 	emit_signal("player_ready", $Player)
 	generate_world()
 	start_wave()
+	$AudioStreamPlayer.play()
 
 
 func _process(delta: float) -> void:
@@ -84,8 +85,11 @@ func start_wave():
 		spawn_Timer.wait_time -= 0.025
 		enemy_stats["speed"] = 3
 		enemy_stats["speed"] += current_wave * 0.13
-	else:
-		enemy_stats["health"] += current_wave * 50
+	elif current_wave > 10 && current_wave < 15:
+		print("test")
+		enemy_stats["health"] *= 3
+	else:	
+		enemy_stats["health"] += current_wave * 20
 	enemy_stats["xp"] = 1
 	enemy_stats["xp"] +=  current_wave * 0.1
 	round_duration_Timer.start(round_duration_Timer.wait_time)
@@ -109,7 +113,7 @@ func _on_enemy_damage_received(amount, position):
 	damage.text = str(amount)
 	damage.label_settings = LabelSettings.new()
 	damage.label_settings.font_size = 32
-	damage.label_settings.font = preload("res://assets/menu/Super Shiny.ttf")
+	damage.label_settings.font = preload("res://assets/Fonts/Super Shiny.ttf")
 
 	# Ajouter le label au World
 	add_child(damage)

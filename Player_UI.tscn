@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpcocax32kjcj"]
+[gd_scene load_steps=10 format=3 uid="uid://bpcocax32kjcj"]
 
 [ext_resource type="PackedScene" uid="uid://b5qlk03u4sb08" path="res://hp_bar.tscn" id="1_bktsm"]
 [ext_resource type="PackedScene" uid="uid://bnir5la2vj5mt" path="res://xp_bar.tscn" id="2_0waxm"]
 [ext_resource type="Script" path="res://hp_bar.gd" id="2_265cv"]
-[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/menu/Super Shiny.ttf" id="3_5bjj5"]
+[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/Fonts/Super Shiny.ttf" id="3_5bjj5"]
 [ext_resource type="Script" path="res://xp_bar.gd" id="4_1ofdf"]
+[ext_resource type="Script" path="res://fps.gd" id="6_xvvwt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5vs7n"]
 font = ExtResource("3_5bjj5")
@@ -60,3 +61,12 @@ offset_right = 709.0
 offset_bottom = 90.0
 text = "temps restant :"
 label_settings = SubResource("LabelSettings_q1xa0")
+
+[node name="FPS" type="Label" parent="."]
+visible = false
+offset_left = 37.0
+offset_top = 165.0
+offset_right = 105.0
+offset_bottom = 188.0
+text = "FPS : 123"
+script = ExtResource("6_xvvwt")

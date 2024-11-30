@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxggrb52as5ef"]
+
+[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/Fonts/Super Shiny.ttf" id="1_60h3g"]
+[ext_resource type="Script" path="res://losing_menu.gd" id="1_cgbhp"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7jtsx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t4hrt"]
+font = ExtResource("1_60h3g")
+font_size = 62
+
+[node name="Losing_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cgbhp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 2
+layer = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(0.180392, 0.180392, 0.180392, 1)
+offset_left = -3.0
+offset_right = 1149.0
+offset_bottom = 647.0
+texture = SubResource("CanvasTexture_7jtsx")
+
+[node name="retry_button" type="Button" parent="CanvasLayer"]
+offset_left = 451.0
+offset_top = 283.0
+offset_right = 508.0
+offset_bottom = 314.0
+scale = Vector2(3.09546, 3.09546)
+text = "Retry?"
+
+[node name="main_menu_button" type="Button" parent="CanvasLayer"]
+offset_left = 400.0
+offset_top = 445.0
+offset_right = 496.0
+offset_bottom = 476.0
+scale = Vector2(3.03522, 3.03522)
+text = "Main Menu"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 408.0
+offset_top = 87.0
+offset_right = 674.0
+offset_bottom = 134.0
+text = "You Died :("
+label_settings = SubResource("LabelSettings_t4hrt")
+
+[connection signal="pressed" from="CanvasLayer/retry_button" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_menu_button" to="." method="_on_main_menu_button_pressed"]

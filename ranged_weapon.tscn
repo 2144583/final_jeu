@@ -17,5 +17,6 @@ autostart = true
 [node name="shoot" type="AudioStreamPlayer" parent="."]
 volume_db = -20.0
 max_polyphony = 10
+bus = &"sfx"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

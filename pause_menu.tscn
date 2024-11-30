@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://dugtqj1u11djs"]
+
+[ext_resource type="Script" path="res://pause_menu.gd" id="1_31uhn"]
+[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/Fonts/Super Shiny.ttf" id="1_kjt1j"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_txv6f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pvgr5"]
+font = ExtResource("1_kjt1j")
+font_size = 62
+
+[node name="Pause_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_31uhn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 2
+layer = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(0.180392, 0.180392, 0.180392, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.8055, 16.227)
+texture = SubResource("CanvasTexture_txv6f")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 470.0
+offset_top = 47.0
+offset_right = 637.0
+offset_bottom = 94.0
+text = "Paused"
+label_settings = SubResource("LabelSettings_pvgr5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_left = 305.0
+offset_top = 196.0
+offset_right = 805.0
+offset_bottom = 496.0
+scale = Vector2(1, 0.996724)
+
+[node name="Resume_button" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Resume"
+
+[node name="settings_Button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Game settings"
+
+[node name="Main_menu_button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Back to Main menu"
+
+[node name="Quit_button" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit the game (noob option)"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/settings_Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Main_menu_button" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Quit_button" to="." method="_on_quit_button_pressed"]

@@ -3,33 +3,34 @@ class_name Bullet
 
 var BASE_SPEED = 500
 var direction = Vector2()
-
 var damage
 
 signal bullet_out_of_screen
 var camera: Camera2D
 var screen_rect: Rect2
 
+var life_timer: Timer
+
+func _ready():
+	# Créer un Timer pour gérer la durée de vie de la balle
+	life_timer = Timer.new()
+	add_child(life_timer)  # Ajoute le timer à la scène de la balle
+	life_timer.wait_time = 5  # Durée de vie de 5 secondes
+	life_timer.connect("timeout", Callable(self, "_on_life_timer_timeout"))
+	life_timer.start()  # Démarre le timer
 
 func _physics_process(delta):
 	position += direction * BASE_SPEED * delta
-	screen_rect = get_camera_screen_rect()
-	if is_out_of_screen(screen_rect):
-		emit_signal("bullet_out_of_screen")
-		queue_free()
+
+
+# Fonction appelée lorsque le timer de durée de vie expire
+func _on_life_timer_timeout():
+	queue_free()  # La balle est détruite après 5 secondes
 
 func get_camera_screen_rect() -> Rect2:
 	var viewport_size = get_viewport().get_visible_rect().size
-
 	var top_left = camera.global_position - (viewport_size / 2)
-
 	return Rect2(top_left, viewport_size)
-
-func is_out_of_screen(screen_rect: Rect2) -> bool:
-	if position.x < screen_rect.position.x or position.x > screen_rect.position.x + screen_rect.size.x or position.y < screen_rect.position.y or position.y > screen_rect.position.y + screen_rect.size.y:
-		return true
-	else: 
-		return false
 
 
 func _on_ennemy_hit(body: Node2D) -> void:

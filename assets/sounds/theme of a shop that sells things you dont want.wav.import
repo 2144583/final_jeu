@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://o8sbucpvpdvq"
+path="res://.godot/imported/theme of a shop that sells things you dont want.wav-9c5f535008a6e85de2c78ddea0bb0516.sample"
+
+[deps]
+
+source_file="res://assets/sounds/theme of a shop that sells things you dont want.wav"
+dest_files=["res://.godot/imported/theme of a shop that sells things you dont want.wav-9c5f535008a6e85de2c78ddea0bb0516.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

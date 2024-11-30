@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3 uid="uid://34nomg4hc8nx"]
+
+[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/Fonts/Super Shiny.ttf" id="1_2kwln"]
+[ext_resource type="Script" path="res://settings_menu.gd" id="1_iaj0e"]
+[ext_resource type="Script" path="res://h_slider.gd" id="2_hxlvd"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2xcf3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qhvsg"]
+font = ExtResource("1_2kwln")
+font_size = 62
+
+[sub_resource type="LabelSettings" id="LabelSettings_w54ng"]
+font = ExtResource("1_2kwln")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_7v1rc"]
+font = ExtResource("1_2kwln")
+font_size = 32
+
+[node name="Settings_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iaj0e")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 4
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(0.180392, 0.180392, 0.180392, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.7332, 16.1914)
+texture = SubResource("CanvasTexture_2xcf3")
+
+[node name="Title_label" type="Label" parent="CanvasLayer"]
+offset_left = 448.0
+offset_top = 57.0
+offset_right = 659.0
+offset_bottom = 104.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_qhvsg")
+
+[node name="Music_volume_label" type="Label" parent="CanvasLayer"]
+offset_left = 229.0
+offset_top = 180.0
+offset_right = 929.0
+offset_bottom = 205.0
+size_flags_vertical = 6
+text = "Music Volume : "
+label_settings = SubResource("LabelSettings_w54ng")
+
+[node name="Music_volume_slider" type="HSlider" parent="CanvasLayer/Music_volume_label"]
+clip_contents = true
+offset_left = 218.0
+offset_top = 2.0
+offset_right = 617.0
+offset_bottom = 18.0
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("2_hxlvd")
+bus_name = "music"
+
+[node name="Sfx_volume_label" type="Label" parent="CanvasLayer"]
+offset_left = 228.0
+offset_top = 280.0
+offset_right = 928.0
+offset_bottom = 305.0
+size_flags_vertical = 6
+text = "    Sfx Volume : "
+label_settings = SubResource("LabelSettings_7v1rc")
+
+[node name="Sfx_volume_slider" type="HSlider" parent="CanvasLayer/Sfx_volume_label"]
+offset_left = 215.0
+offset_top = 5.0
+offset_right = 613.0
+offset_bottom = 21.0
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("2_hxlvd")
+bus_name = "sfx"
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 504.0
+offset_top = 396.0
+offset_right = 549.0
+offset_bottom = 427.0
+scale = Vector2(2.17781, 2.17781)
+text = "Back"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

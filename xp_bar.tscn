@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b5ix75o8wymtq" path="res://assets/Game_UI/GUI-Kit-Pack-Free_61.png" id="1_710uu"]
 [ext_resource type="Texture2D" uid="uid://dv5c8nfys3s36" path="res://assets/Game_UI/GUI-Kit-Pack-Free_02.png" id="2_arvsd"]
-[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/menu/Super Shiny.ttf" id="3_uow4t"]
+[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/Fonts/Super Shiny.ttf" id="3_uow4t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4e0iw"]
 font = ExtResource("3_uow4t")
