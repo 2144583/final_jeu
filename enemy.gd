@@ -9,9 +9,12 @@ signal enemy_died
 var health
 var damage
 var speed
-var xp = 1
+var xp
 
 signal damage_received(amount, position)
+
+var attack_cooldown = 1.0
+var attack_timer = 0.0 
 
 func _ready() -> void:
 	animator = $AnimationPlayer
@@ -39,7 +42,7 @@ func take_damage(bullet: Bullet) -> void:
 
 func show_damage(bullet_damage):
 	var damage = Label.new()
-	damage.text = str(bullet_damage)
+	damage.text = str(bullet_damage, "%.0f")
 	damage.label_settings = LabelSettings.new()
 	
 	damage.label_settings.font_size = 32
@@ -66,4 +69,6 @@ func die() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
-		body.take_damage(damage)
+		if $Attack_cooldown.time_left <= 0:
+			body.take_damage(damage)
+			$Attack_cooldown.start()

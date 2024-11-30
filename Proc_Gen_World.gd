@@ -78,13 +78,16 @@ func generate_world():
 				tile_map.set_cell(Vector2(x, y), source_id, Vector2(randi_range(0, 15), randi_range(0, 7)))
 
 func start_wave():
-	enemy_stats["health"] = current_wave * 2
-	enemy_stats["damage"] = current_wave
+	enemy_stats["damage"] = current_wave + 4
 	if current_wave < 15:
-		enemy_stats["speed"] += current_wave * 0.05
+		enemy_stats["health"] = current_wave * 2
+		spawn_Timer.wait_time -= 0.025
+		enemy_stats["speed"] = 3
+		enemy_stats["speed"] += current_wave * 0.13
 	else:
-		enemy_stats["health"] += current_wave
-	enemy_stats["xp"] +=  current_wave * 0.5
+		enemy_stats["health"] += current_wave * 50
+	enemy_stats["xp"] = 1
+	enemy_stats["xp"] +=  current_wave * 0.1
 	round_duration_Timer.start(round_duration_Timer.wait_time)
 	spawn_Timer.start(spawn_Timer.wait_time)
 
@@ -94,6 +97,7 @@ func enemy_spawner():
 	enemy.health = enemy_stats["health"]
 	enemy.damage = enemy_stats["damage"]
 	enemy.speed = enemy_stats["speed"]
+	enemy.xp = enemy_stats["xp"]
 	add_child(enemy)
 	active_enemies.append(enemy)
 	enemy.connect("damage_received", Callable(self, "_on_enemy_damage_received"))

@@ -1,8 +1,8 @@
 extends Node2D
 class_name ranged_weapon
 
-@export var _mindamage : int
-var _maxdamage : int
+@export var _mindamage : float
+var _maxdamage : float
 @export var _attack_speed : float
 var _tier : int = 1
 var _range: int
@@ -21,6 +21,8 @@ var bullet : Bullet
 var last_shot_time : float = -INF
 var cooldown : float
 
+@onready var Shoot_timer = $Timer
+
 @onready var _animation_player = $AnimationPlayer
 @onready var shoot_sound : AudioStreamPlayer = $shoot
 # Called when the node enters the scene tree for the first time.
@@ -31,7 +33,8 @@ func _ready() -> void:
 	player = get_parent().get_parent()
 	camera = player.get_node("Camera2D")
 	cooldown = 1 / _attack_speed
-	$Timer.wait_time = cooldown
+	
+	Shoot_timer.wait_time = cooldown
 
 func _get_closest_enemy(enemies):
 	

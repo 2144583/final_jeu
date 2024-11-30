@@ -14,6 +14,11 @@ config/name="Eye_Of_The_Toaster"
 run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 
+[display]
+
+window/size/mode=2
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="Eye_Of_The_Toaster"

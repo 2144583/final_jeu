@@ -13,7 +13,7 @@ var gun_instance: Node2D
 
 
 #Basic player stats here
-var max_health = 10
+var max_health = 30
 var health = max_health
 var speed: float = 300.0
 var push_force = 20
