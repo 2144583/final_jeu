@@ -57,6 +57,7 @@ label_settings = SubResource("LabelSettings_w54ng")
 
 [node name="Music_volume_slider" type="HSlider" parent="CanvasLayer/Music_volume_label"]
 clip_contents = true
+layout_mode = 0
 offset_left = 218.0
 offset_top = 2.0
 offset_right = 617.0
@@ -77,6 +78,7 @@ text = "    Sfx Volume : "
 label_settings = SubResource("LabelSettings_7v1rc")
 
 [node name="Sfx_volume_slider" type="HSlider" parent="CanvasLayer/Sfx_volume_label"]
+layout_mode = 0
 offset_left = 215.0
 offset_top = 5.0
 offset_right = 613.0

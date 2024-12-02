@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b270nl7q168ok"]
+[gd_scene load_steps=12 format=3 uid="uid://b270nl7q168ok"]
 
 [ext_resource type="Texture2D" uid="uid://c2g45o8x25r8a" path="res://assets/Sprites/mainmenubg.jpg" id="1_t68ko"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_wy16w"]
@@ -11,6 +11,25 @@
 font = ExtResource("5_mgon4")
 font_size = 105
 font_color = Color(1, 0.615686, 0.466667, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_23hmv"]
+font = ExtResource("5_mgon4")
+font_size = 28
+font_color = Color(0.710466, 0.716258, 0.732128, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cw74v"]
+font = ExtResource("5_mgon4")
+font_size = 28
+font_color = Color(0.709804, 0.717647, 0.733333, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cxfma"]
+font = ExtResource("5_mgon4")
+font_size = 28
+font_color = Color(0.709804, 0.717647, 0.733333, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x85k2"]
+font = ExtResource("5_mgon4")
+font_size = 32
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -55,7 +74,7 @@ parameters/looping = true
 
 [node name="AnimationPlayer" parent="." instance=ExtResource("3_wrv44")]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ButtonContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = -405.0
 offset_top = 258.0
@@ -63,25 +82,60 @@ offset_right = -105.0
 offset_bottom = 472.0
 theme_override_constants/separation = 20
 
-[node name="Play_Button" type="Button" parent="VBoxContainer"]
+[node name="Play_Button" type="Button" parent="ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("5_q5ieq")
 action_mode = 0
-text = "Play"
+text = "Jouer"
 
-[node name="Settings_Button" type="Button" parent="VBoxContainer"]
+[node name="Settings_Button" type="Button" parent="ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("5_q5ieq")
 action_mode = 0
-text = "Settings"
+text = "Paramètres"
 
-[node name="Quit_button" type="Button" parent="VBoxContainer"]
+[node name="Quit_button" type="Button" parent="ButtonContainer"]
 layout_mode = 2
 theme = ExtResource("5_q5ieq")
 action_mode = 0
-text = "Quit
-"
+text = "Quitter"
 
-[connection signal="pressed" from="VBoxContainer/Play_Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Settings_Button" to="." method="_on_settings_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Quit_button" to="." method="_on_quit_button_pressed"]
+[node name="LeaderboardContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -402.0
+offset_top = 543.0
+offset_right = -102.0
+offset_bottom = 643.0
+
+[node name="place1" type="Label" parent="LeaderboardContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "test"
+label_settings = SubResource("LabelSettings_23hmv")
+
+[node name="place2" type="Label" parent="LeaderboardContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "test"
+label_settings = SubResource("LabelSettings_cw74v")
+
+[node name="place3" type="Label" parent="LeaderboardContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "test"
+label_settings = SubResource("LabelSettings_cxfma")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -410.0
+offset_top = 496.0
+offset_right = -91.0
+offset_bottom = 521.0
+text = "Top 3 meilleurs  joueurs"
+label_settings = SubResource("LabelSettings_x85k2")
+
+[connection signal="pressed" from="ButtonContainer/Play_Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ButtonContainer/Settings_Button" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="ButtonContainer/Quit_button" to="." method="_on_quit_button_pressed"]

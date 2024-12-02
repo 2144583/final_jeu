@@ -90,6 +90,9 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("debug"):
 		fps.visible = !$CanvasLayer/FPS.visible
+
+	if Input.is_action_just_pressed("die"):
+		die()
 	
 	if Input.is_action_just_pressed("pause"):
 		var pause_scene = preload("res://pause_menu.tscn")

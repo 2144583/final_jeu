@@ -61,4 +61,4 @@ libraries = {
 
 [node name="shoot" parent="." index="4"]
 stream = ExtResource("4_qm57f")
-volume_db = -18.0
+volume_db = -8.546

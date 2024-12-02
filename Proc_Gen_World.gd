@@ -29,39 +29,46 @@ var player : CharacterBody2D
 signal player_ready(player)
 
 func _ready() -> void:
+	GameState.current_wave = 1
 	noise = noise_text.noise
 	player = get_node("Player") 
 	emit_signal("player_ready", $Player)
 	generate_world()
 	start_wave()
 	$AudioStreamPlayer.play()
+	$AudioStreamPlayer.connect("finished", Callable(self,"_on_loop_sound").bind($AudioStreamPlayer))
 
 
 func _process(delta: float) -> void:
 	player.time_left_label.text = "Temps restant : %.1f" % round_duration_Timer.time_left
+	
+
+func _on_loop_sound(player):
+	player.stream_paused = false
+	player.play()
 
 
 func next_wave():
-	# Arrêter le jeu
 	spawn_Timer.stop()
 	round_duration_Timer.stop()
 	for enemy in active_enemies:
-		enemy.queue_free()  # Supprime l'ennemi de la scène
+		enemy.queue_free()  
 	active_enemies.clear()
+	
 	if player.level_up_count > 0:
 		get_tree().paused = true
+		
 		var upgrade_menu_scene = preload("res://Upgrade_Menu.tscn")
 		var upgrade_menu = upgrade_menu_scene.instantiate()
-
-		# Ajouter le menu comme enfant de la scène principale
+		
 		add_child(upgrade_menu)
 
-		# Activer la caméra du menu
 		var camera = upgrade_menu.get_node("Camera2D")
 		camera.make_current()
 	
 	await get_tree().create_timer(2).timeout
 	current_wave += 1
+	GameState.current_wave = current_wave
 	
 	player.wave_label.text = "Manche : %d" % current_wave
 	player.health = player.max_health
@@ -85,11 +92,11 @@ func start_wave():
 		spawn_Timer.wait_time -= 0.025
 		enemy_stats["speed"] = 3
 		enemy_stats["speed"] += current_wave * 0.13
-	elif current_wave > 10 && current_wave < 15:
-		print("test")
-		enemy_stats["health"] *= 3
 	else:	
-		enemy_stats["health"] += current_wave * 20
+		enemy_stats["health"] += current_wave * 2
+	
+	if current_wave > 10 && current_wave < 15:
+		enemy_stats["health"] *= 3
 	enemy_stats["xp"] = 1
 	enemy_stats["xp"] +=  current_wave * 0.1
 	round_duration_Timer.start(round_duration_Timer.wait_time)
