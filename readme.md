@@ -1,19 +1,17 @@
 # Presentation Eye of the toaster
     -Louis-Philippe L'Ecuyer
 
-Eye of the Toaster est un roguelite survival de manches incrementiel ou les ennemis tout comme le joueur peuvent evoluer de facon exponentielle. Les ennemis donnent de l'exp a leur mort, ce qu'il permet au joueur de monter de niveau et pour chaque niveau acquerit durant une manche, le joueur pourra choisir une amelioration. Le but est de survivre le plus longtemps possible sans mourrir.
+Eye of the Toaster est un jeu de survie roguelite progressif dans lequel les ennemis ainsi que le joueur peuvent croître de manière exponentielle. Chaque ennemi vaincu accorde des EXP, qui permettent au joueur de monter en niveau. Pour chaque niveau gagné durant une partie, le joueur peut sélectionner une autre amélioration. L'objectif est très clair : essayer de rester en vie le plus longtemps possible sans mourir.
 
-Pour ce projet, mon inspiration principale est le jeu egalement fait en GDScript Brotato, l'idee de gestion d'armes multiples est directement prise de ce jeu.
-
-Mon but etait de recreer ma propre version de Brotato en essayant d'etre le plus fidele possible au jeu de base tout en etant contraint par un delai plus limité.
+Ce projet a été inspiré principalement par le jeu Brotato, qui a également été réalisé en utilisant GDScript. L'idée même de contrôler plusieurs armes en même temps provient directement de ce jeu. L'objectif que je souhaite atteindre est de créer ma propre version unique de Brotato tout en restant fidèle aux mécaniques et au design originaux mais dans des délais contraints.
 
 ## Systeme D'amelioration
 
-Comme dans Brotato, Eye of the Toaster offre des ameliorations de joueur affichees aleatoirement selon un systeme de rarete. Les ameliorations vont de simple bonus de stats a l'obtention de nouvelles armes pour equiper le personnage et le preparer a faire face aux hordes d'ennemis a venir.
+Comme dans Brotato, Eye of the Toaster propose des améliorations aléatoires basées sur un système de rareté. Ces améliorations peuvent être de simples bonus de statistiques ou l'acquisition de nouvelles armes, permettant de mieux équiper le personnage pour affronter les vagues d'ennemis.
 
-Pour ce faire, j'ai creer un systeme de gestionnaire d'amelioration, qui cree a son tour un tableau de classe "Upgrade" qui ont chacunes leurs characteristiques distinctes et une rarete allant de 1 a 7. La classe "Upgrade" possede une methode appliquer pour appliquer ses stats au joueur en passant par un "Callable" qui appele la methode representant l'amelioration a appliquer.
+Pour implémenter cela, j'ai conçu un gestionnaire d'améliorations, qui génère un tableau d'objets de classe "Upgrade". Chaque amélioration possède ses propres caractéristiques et une rareté définie (allant de 1 à 7). La classe "Upgrade" inclut une méthode appliquer, qui modifie les statistiques du joueur via un Callable associé à l'amélioration spécifique.
 
-Dans mon menu d'amelioration, le tableau de mon gestionnaire y est envoyer et melanger selon la rarete pour chaque niveau que le joueur a gagner durant la manche grace a la methode integree de godot max() qui recupere la plus haute valeur mais en comparant 1 et le plus haute rarete moins la rarete courante d'une amelioration, ca nous donne que plus la rarete de l'amelioration sera haute, moins le resultat de max sera haut. Ensuite, pour le resultat de max, on ajoute cette amelioration a un tableau. Maintenant nous pouvons melanger ce tableau et ne retourner que les 3 premiers resultats
+Dans le menu d'amélioration, le tableau d'améliorations est mélangé en fonction de leur rareté. J'utilise la fonction intégrée de Godot max() pour comparer les valeurs, ce qui réduit la probabilité de voir apparaître des améliorations rares. Ensuite, ces améliorations sont ajoutées à un tableau, mélangées, puis seules les trois premières sont affichées au joueur.
 
 ![alt text](image.png)
 
@@ -26,13 +24,13 @@ Dans mon menu d'amelioration, le tableau de mon gestionnaire y est envoyer et me
 
 ## Generation procedurale
 
-Eye of the Toaster possede une map generee proceduralement, quoique ce n'est que visuel. Comme dans le jeu Vampire survivor, il me fallait une map assez grande pour pouvoir s'y promener quasiment a l'infini sans arriver a la fin.
+Eye of the Toaster propose une carte générée procéduralement, bien que son impact soit principalement visuel. Inspiré de jeux comme Vampire Survivors, j'ai voulu une carte suffisamment vaste pour que le joueur puisse s'y déplacer presque infiniment sans rencontrer de limites. Pour des raisons 
 
-Avec l'aide d'un Tilemap et du bruit de Perlin, au lieu de placer chaque tuile une par une et avoir une carte toujours pareil, nous avons un monde a l'allure plus naturelle qui ne sera jamais le meme entre chaque partie grace a la seed du bruit qui est generee aleatoirement a chaque partie
+En utilisant un TileMap et le bruit de Perlin, chaque tuile est placée aléatoirement, créant une carte à l'apparence naturelle, différente à chaque partie grâce à une seed générée aléatoirement.
+
+Pour chaque tuile de gazon, une texture est sélectionnée au hasard dans un atlas, tandis qu'une autre technique est appliquée pour les dalles. Cela donne un environnement vivant et renouvelé à chaque nouvelle partie.
 
 ![alt text](image-1.png)
-
-La maniere dont j'ai generer le bruit est soit noir ou blanc, pour chaque tuile ou le gazon devait aller, j'ai prit une tuile au hazard dans mon atlas parmis les tuiles representant du gazon et pareil pour les dalles.
 
     pour cet algorithme, je me suis aider de cette source 
     https://www.youtube.com/watch?v=rlUzizExe2Q

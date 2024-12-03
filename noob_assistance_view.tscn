@@ -42,10 +42,16 @@ offset_top = 188.0
 offset_right = 989.0
 offset_bottom = 488.0
 bbcode_enabled = true
-text = "[center][b]Vous devez survivre le plus longtemps possible a des hordes d'ennemis en continu. chaque ennemi tuer donne de l'exp et pour chaque niveau gagner dans une manche, vous pouvez choisir une amelioration. les seuls controles du jeu sont le joystick et le bouton 'A' pour selectionner les ameliorations. 
+text = "[center][b]Vous devez survivre le plus longtemps possible face à des hordes d'ennemis ininterrompues ![/b]
 
+[b]Chaque ennemi éliminé vous rapporte de l'EXP. À chaque niveau gagné dans une manche, vous pouvez choisir une amélioration pour devenir plus puissant.[/b]
 
-Bonne chance![/b][/center]"
+[b]Les contrôles sont simples :[/b]
+- Utilisez le joystick pour vous déplacer.
+- Appuyez sur le bouton 'A' pour sélectionner vos améliorations.
+
+[b]Bonne chance, héros ![/b][/center]
+"
 fit_content = true
 scroll_active = false
 
