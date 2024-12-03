@@ -47,21 +47,21 @@ text = "Settings"
 label_settings = SubResource("LabelSettings_qhvsg")
 
 [node name="Music_volume_label" type="Label" parent="CanvasLayer"]
-offset_left = 229.0
+offset_left = 197.0
 offset_top = 180.0
-offset_right = 929.0
+offset_right = 897.0
 offset_bottom = 205.0
 size_flags_vertical = 6
-text = "Music Volume : "
+text = "Volume Musique : "
 label_settings = SubResource("LabelSettings_w54ng")
 
 [node name="Music_volume_slider" type="HSlider" parent="CanvasLayer/Music_volume_label"]
 clip_contents = true
 layout_mode = 0
-offset_left = 218.0
-offset_top = 2.0
-offset_right = 617.0
-offset_bottom = 18.0
+offset_left = 243.0
+offset_top = 4.0
+offset_right = 642.0
+offset_bottom = 20.0
 focus_neighbor_bottom = NodePath("../../Sfx_volume_label/Sfx_volume_slider")
 focus_next = NodePath("../../Sfx_volume_label/Sfx_volume_slider")
 max_value = 1.0
@@ -94,14 +94,27 @@ value = 1.0
 script = ExtResource("2_hxlvd")
 bus_name = "sfx"
 
+[node name="How_to_play" type="Button" parent="CanvasLayer"]
+offset_left = 429.0
+offset_top = 436.0
+offset_right = 559.0
+offset_bottom = 467.0
+scale = Vector2(2.23251, 2.23251)
+focus_neighbor_top = NodePath("../Sfx_volume_label/Sfx_volume_slider")
+focus_neighbor_bottom = NodePath("../Button")
+focus_next = NodePath("../Button")
+focus_previous = NodePath("../Sfx_volume_label/Sfx_volume_slider")
+text = "Comment Jouer"
+
 [node name="Button" type="Button" parent="CanvasLayer"]
 offset_left = 510.0
 offset_top = 542.0
 offset_right = 555.0
 offset_bottom = 573.0
 scale = Vector2(2.17781, 2.17781)
-focus_neighbor_top = NodePath("../Sfx_volume_label/Sfx_volume_slider")
-focus_previous = NodePath("../Sfx_volume_label/Sfx_volume_slider")
-text = "Back"
+focus_neighbor_top = NodePath("../How_to_play")
+focus_previous = NodePath("../How_to_play")
+text = "Retour"
 
+[connection signal="pressed" from="CanvasLayer/How_to_play" to="." method="_on_how_to_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

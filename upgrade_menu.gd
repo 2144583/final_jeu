@@ -52,13 +52,13 @@ func shuffle_upgrades():
 	var index = 0
 	var weighted_upgrades = []
 	for upgrade in upgrade_manager.all_upgrades:
-		var weight = max(1, 7 - upgrade.rarity)  # Plus `rarity` est élevé, moins l'upgrade est fréquent
+		var weight = max(1, 7 - upgrade.rarity)
 		for i in range(weight):
 			weighted_upgrades.append(upgrade)
 	
-	# Mélanger et sélectionner les upgrades
+	
 	weighted_upgrades.shuffle()
-	var random_upgrades = weighted_upgrades.slice(0, 3)  # Prend 3 upgrades au hasard
+	var random_upgrades = weighted_upgrades.slice(0, 3)  
 	
 	upgrade_count -= 1
 	

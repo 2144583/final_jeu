@@ -31,6 +31,7 @@ signal player_ready(player)
 func _ready() -> void:
 	GameState.current_wave = 1
 	noise = noise_text.noise
+	noise.seed = randi() % 1000 + 1
 	player = get_node("Player") 
 	emit_signal("player_ready", $Player)
 	generate_world()

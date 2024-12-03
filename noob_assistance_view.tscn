@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt2d2ug6tpwsn"]
+
+[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/Fonts/Super Shiny.ttf" id="1_2ly65"]
+[ext_resource type="Script" path="res://noob_assistance_view.gd" id="1_5mqd7"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_i71dw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_67cxu"]
+font = ExtResource("1_2ly65")
+font_size = 64
+
+[node name="Noob_assistance_view" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5mqd7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 11
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color(0.180392, 0.180392, 0.180392, 1)
+offset_right = 1153.0
+offset_bottom = 652.0
+texture = SubResource("CanvasTexture_i71dw")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 390.0
+offset_top = 79.0
+offset_right = 783.0
+offset_bottom = 129.0
+text = "Comment jouer"
+label_settings = SubResource("LabelSettings_67cxu")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 189.0
+offset_top = 188.0
+offset_right = 989.0
+offset_bottom = 488.0
+bbcode_enabled = true
+text = "[center][b]Vous devez survivre le plus longtemps possible a des hordes d'ennemis en continu. chaque ennemi tuer donne de l'exp et pour chaque niveau gagner dans une manche, vous pouvez choisir une amelioration. les seuls controles du jeu sont le joystick et le bouton 'A' pour selectionner les ameliorations. 
+
+
+Bonne chance![/b][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="BackButton" type="Button" parent="CanvasLayer"]
+offset_left = 516.0
+offset_top = 510.0
+offset_right = 577.0
+offset_bottom = 541.0
+scale = Vector2(2.35013, 2.35013)
+text = "Retour"
+
+[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]
