@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dovtc55575tgv"]
+[gd_scene load_steps=8 format=3 uid="uid://dovtc55575tgv"]
 
 [ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/Fonts/Super Shiny.ttf" id="1_6al2q"]
 [ext_resource type="Script" path="res://leaderboard_view.gd" id="1_vxmir"]
@@ -9,13 +9,17 @@
 font = ExtResource("1_6al2q")
 font_size = 62
 
-[sub_resource type="LabelSettings" id="LabelSettings_pghbp"]
-font = ExtResource("1_6al2q")
-font_size = 32
-
 [sub_resource type="Theme" id="Theme_8cxxn"]
 default_font = ExtResource("1_6al2q")
 default_font_size = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_83cx8"]
+font = ExtResource("1_6al2q")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_pghbp"]
+font = ExtResource("1_6al2q")
+font_size = 32
 
 [node name="LeaderBoardView" type="Control"]
 process_mode = 3
@@ -45,11 +49,37 @@ offset_bottom = 305.0
 text = "Entre ton nom : "
 label_settings = SubResource("LabelSettings_nhy4x")
 
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer"]
+offset_left = 569.0
+offset_top = 252.0
+offset_right = 1069.0
+offset_bottom = 312.0
+focus_neighbor_bottom = NodePath("../Button2")
+theme = SubResource("Theme_8cxxn")
+
+[node name="Button2" type="Button" parent="CanvasLayer"]
+offset_left = 371.0
+offset_top = 462.0
+offset_right = 771.0
+offset_bottom = 512.0
+focus_neighbor_top = NodePath("../LineEdit")
+focus_neighbor_bottom = NodePath("../Button")
+
+[node name="Label" type="Label" parent="CanvasLayer/Button2"]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 10.0
+offset_right = 363.0
+offset_bottom = 35.0
+text = "Retour au menu principal"
+label_settings = SubResource("LabelSettings_83cx8")
+
 [node name="Button" type="Button" parent="CanvasLayer"]
 offset_left = 472.0
 offset_top = 542.0
 offset_right = 672.0
 offset_bottom = 592.0
+focus_neighbor_top = NodePath("../Button2")
 
 [node name="Label" type="Label" parent="CanvasLayer/Button"]
 layout_mode = 0
@@ -60,12 +90,6 @@ offset_bottom = 37.0
 text = "Enregistrer"
 label_settings = SubResource("LabelSettings_pghbp")
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer"]
-offset_left = 569.0
-offset_top = 252.0
-offset_right = 1069.0
-offset_bottom = 312.0
-theme = SubResource("Theme_8cxxn")
-
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="text_changed" from="CanvasLayer/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

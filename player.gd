@@ -75,8 +75,19 @@ func get_free_weapon_slot() -> Node2D:
 			return slot
 	return null
 
+func is_on_arcade() -> bool:
+	return OS.get_executable_path().to_lower().contains("retropie")
+
+func manage_end_game() -> void:
+	if is_on_arcade() :
+		if Input.is_action_pressed("Hotkey") and Input.is_action_pressed("Quit"):
+			get_tree().quit()
+	else :
+		if Input.is_action_just_pressed("Quit"):
+			get_tree().quit()
+
 func _process(_delta: float) -> void:
-	
+	manage_end_game()
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	input_vector.y = Input.get_action_strength("down") - Input.get_action_strength("up")

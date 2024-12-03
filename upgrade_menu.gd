@@ -11,6 +11,7 @@ var upgrade_count : int
 		$HBoxContainer/MarginContainer2,
 		$HBoxContainer/MarginContainer3
 	]
+var is_clicking = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,6 +25,20 @@ func _ready() -> void:
 	
 	
 	check_level_ups()
+
+func is_on_arcade() -> bool:
+	return OS.get_executable_path().to_lower().contains("retropie")
+
+func manage_end_game() -> void:
+	if is_on_arcade() :
+		if Input.is_action_pressed("Hotkey") and Input.is_action_pressed("Quit"):
+			get_tree().quit()
+	else :
+		if Input.is_action_just_pressed("Quit"):
+			get_tree().quit()
+
+func _process(_delta: float) -> void:
+	manage_end_game()
 
 func check_level_ups():
 	if player.level_up_count > 0:
@@ -59,6 +74,14 @@ func shuffle_upgrades():
 		var container = containers[index]
 		container.add_child(button)
 		index += 1
+	
+	set_initial_focus()
+
+func set_initial_focus():
+	for container in containers:
+		if container.get_child_count() > 0:
+			container.get_child(0).grab_focus()
+			break
 
 func _on_upgrade_selected(upgrade: Upgrade) -> void:
 	if upgrade_count == 0:
@@ -67,3 +90,5 @@ func _on_upgrade_selected(upgrade: Upgrade) -> void:
 	else:
 		upgrade_counter_label.text = ("%s restante(s)" % upgrade_count) 
 		shuffle_upgrades()
+		await get_tree().create_timer(0.1).timeout
+		$HBoxContainer/MarginContainer3.get_child(0).grab_focus()

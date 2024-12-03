@@ -1,0 +1,113 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbksp6ovjiapw"]
+
+[ext_resource type="Script" path="res://upgrade_menu.gd" id="1_1hj4i"]
+[ext_resource type="FontFile" uid="uid://ckeslc7xh7auf" path="res://assets/Fonts/Super Shiny.ttf" id="1_77ssy"]
+[ext_resource type="AudioStream" uid="uid://o8sbucpvpdvq" path="res://assets/sounds/theme of a shop that sells things you dont want.wav" id="3_nbuid"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_eutck"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ni8o7"]
+font = ExtResource("1_77ssy")
+font_size = 62
+
+[sub_resource type="LabelSettings" id="LabelSettings_an6mr"]
+font = ExtResource("1_77ssy")
+font_size = 62
+
+[sub_resource type="LabelSettings" id="LabelSettings_h4ohu"]
+font = ExtResource("1_77ssy")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_ewmo6"]
+font = ExtResource("1_77ssy")
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_7j6hb"]
+font = ExtResource("1_77ssy")
+font_size = 36
+
+[node name="Upgrade_Menu" type="CanvasLayer"]
+process_mode = 2
+layer = 3
+follow_viewport_enabled = true
+script = ExtResource("1_1hj4i")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.180005, 0.180005, 0.180005, 1)
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.997
+offset_right = 4.0
+offset_bottom = -0.0560303
+texture = SubResource("CanvasTexture_eutck")
+
+[node name="levelupCounter" type="Label" parent="."]
+offset_left = 97.0
+offset_top = 82.0
+offset_right = 771.0
+offset_bottom = 129.0
+text = "Vous avez monté de niveau :"
+label_settings = SubResource("LabelSettings_ni8o7")
+
+[node name="levelcounter" type="Label" parent="levelupCounter"]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 1.0
+offset_right = 929.0
+offset_bottom = 48.0
+text = "300 fois"
+label_settings = SubResource("LabelSettings_an6mr")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 465.0
+offset_top = 19.0
+offset_right = 698.0
+offset_bottom = 44.0
+text = "Manche completée"
+label_settings = SubResource("LabelSettings_h4ohu")
+
+[node name="upgradecount" type="Label" parent="."]
+offset_left = 269.0
+offset_top = 164.0
+offset_right = 716.0
+offset_bottom = 193.0
+text = "Choisissez une amélioration : "
+label_settings = SubResource("LabelSettings_ewmo6")
+
+[node name="counter" type="Label" parent="upgradecount"]
+layout_mode = 0
+offset_left = 451.0
+offset_right = 513.0
+offset_bottom = 29.0
+scale = Vector2(1.00516, 1)
+text = "allo"
+label_settings = SubResource("LabelSettings_7j6hb")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(580, 319)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = 226.0
+offset_right = -45.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 25
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nbuid")

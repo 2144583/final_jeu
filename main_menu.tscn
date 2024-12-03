@@ -80,22 +80,27 @@ offset_left = -405.0
 offset_top = 258.0
 offset_right = -105.0
 offset_bottom = 472.0
+focus_mode = 2
 theme_override_constants/separation = 20
 
 [node name="Play_Button" type="Button" parent="ButtonContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Settings_Button")
 theme = ExtResource("5_q5ieq")
 action_mode = 0
 text = "Jouer"
 
 [node name="Settings_Button" type="Button" parent="ButtonContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Play_Button")
+focus_neighbor_bottom = NodePath("../Quit_button")
 theme = ExtResource("5_q5ieq")
 action_mode = 0
 text = "Paramètres"
 
 [node name="Quit_button" type="Button" parent="ButtonContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Settings_Button")
 theme = ExtResource("5_q5ieq")
 action_mode = 0
 text = "Quitter"
@@ -110,7 +115,6 @@ offset_bottom = 643.0
 [node name="place1" type="Label" parent="LeaderboardContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "test"
 label_settings = SubResource("LabelSettings_23hmv")
 
 [node name="place2" type="Label" parent="LeaderboardContainer"]
@@ -124,7 +128,6 @@ label_settings = SubResource("LabelSettings_cw74v")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "test"
 label_settings = SubResource("LabelSettings_cxfma")
 
 [node name="Label" type="Label" parent="."]

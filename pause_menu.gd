@@ -1,9 +1,9 @@
 extends Control
 
-
+var is_clicking = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$CanvasLayer/VBoxContainer/Resume_button.grab_focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,6 +30,7 @@ func _on_quit_button_pressed() -> void:
 func _on_settings_button_pressed() -> void:
 	var settings_menu_scene = preload("res://settings_menu.tscn")
 	var settings_menu = settings_menu_scene.instantiate()
+	settings_menu.parent_menu = $CanvasLayer/VBoxContainer/Resume_button
 
 	# Ajouter le menu comme enfant de la scène principale
 	add_child(settings_menu)

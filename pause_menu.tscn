@@ -39,31 +39,45 @@ text = "Paused"
 label_settings = SubResource("LabelSettings_pvgr5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+process_mode = 2
 offset_left = 305.0
 offset_top = 196.0
 offset_right = 805.0
 offset_bottom = 496.0
 scale = Vector2(1, 0.996724)
+focus_mode = 2
 
 [node name="Resume_button" type="Button" parent="CanvasLayer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../settings_Button")
+focus_next = NodePath("../settings_Button")
 text = "Resume"
 
 [node name="settings_Button" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Resume_button")
+focus_neighbor_bottom = NodePath("../Main_menu_button")
+focus_next = NodePath("../Main_menu_button")
+focus_previous = NodePath("../Resume_button")
 text = "Game settings"
 
 [node name="Main_menu_button" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../settings_Button")
+focus_neighbor_bottom = NodePath("../Quit_button")
+focus_next = NodePath("../Quit_button")
+focus_previous = NodePath("../settings_Button")
 text = "Back to Main menu"
 
 [node name="Quit_button" type="Button" parent="CanvasLayer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Main_menu_button")
+focus_previous = NodePath("../Main_menu_button")
 text = "Quit the game (noob option)"
 
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Resume_button" to="." method="_on_resume_button_pressed"]

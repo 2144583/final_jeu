@@ -62,9 +62,10 @@ offset_left = 218.0
 offset_top = 2.0
 offset_right = 617.0
 offset_bottom = 18.0
+focus_neighbor_bottom = NodePath("../../Sfx_volume_label/Sfx_volume_slider")
+focus_next = NodePath("../../Sfx_volume_label/Sfx_volume_slider")
 max_value = 1.0
-step = 0.001
-value = 1.0
+step = 0.1
 script = ExtResource("2_hxlvd")
 bus_name = "music"
 
@@ -83,18 +84,24 @@ offset_left = 215.0
 offset_top = 5.0
 offset_right = 613.0
 offset_bottom = 21.0
+focus_neighbor_top = NodePath("../../Music_volume_label/Music_volume_slider")
+focus_neighbor_bottom = NodePath("../../Button")
+focus_next = NodePath("../../Button")
+focus_previous = NodePath("../../Music_volume_label/Music_volume_slider")
 max_value = 1.0
-step = 0.001
+step = 0.1
 value = 1.0
 script = ExtResource("2_hxlvd")
 bus_name = "sfx"
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 504.0
-offset_top = 396.0
-offset_right = 549.0
-offset_bottom = 427.0
+offset_left = 510.0
+offset_top = 542.0
+offset_right = 555.0
+offset_bottom = 573.0
 scale = Vector2(2.17781, 2.17781)
+focus_neighbor_top = NodePath("../Sfx_volume_label/Sfx_volume_slider")
+focus_previous = NodePath("../Sfx_volume_label/Sfx_volume_slider")
 text = "Back"
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

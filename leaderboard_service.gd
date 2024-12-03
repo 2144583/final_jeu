@@ -43,7 +43,10 @@ func get_top_entries() -> Array:
 	return leaderboard.slice(0, 3)
 
 func _sort_scores(a, b):
-	return b["manche"] - a["manche"]
+	if a["manche"] > b["manche"]:
+		return true
+	return false
+
 
 func print_leaderboard():
 	print("=== Leaderboard ===")

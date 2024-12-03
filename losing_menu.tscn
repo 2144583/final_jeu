@@ -10,6 +10,7 @@ font = ExtResource("1_60h3g")
 font_size = 62
 
 [node name="Losing_Menu" type="Control"]
+process_mode = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,6 +37,7 @@ offset_top = 222.0
 offset_right = 518.0
 offset_bottom = 253.0
 scale = Vector2(3.09546, 3.09546)
+focus_neighbor_bottom = NodePath("../main_menu_button")
 text = "Reessayer?"
 
 [node name="main_menu_button" type="Button" parent="CanvasLayer"]
@@ -44,7 +46,19 @@ offset_top = 373.0
 offset_right = 500.0
 offset_bottom = 404.0
 scale = Vector2(3.03522, 3.03522)
+focus_neighbor_top = NodePath("../retry_button")
+focus_neighbor_bottom = NodePath("../Leaderboard_button")
 text = "Menu principal"
+
+[node name="Leaderboard_button" type="Button" parent="CanvasLayer"]
+offset_left = 114.0
+offset_top = 533.0
+offset_right = 514.0
+offset_bottom = 564.0
+scale = Vector2(2.23296, 2.23296)
+focus_neighbor_top = NodePath("../main_menu_button")
+text = "Entre ton score dans le Leaderboard!"
+text_overrun_behavior = 2
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 offset_left = 281.0
@@ -53,15 +67,6 @@ offset_right = 845.0
 offset_bottom = 117.0
 text = "La mort t'as atteint :("
 label_settings = SubResource("LabelSettings_t4hrt")
-
-[node name="Leaderboard_button" type="Button" parent="CanvasLayer"]
-offset_left = 114.0
-offset_top = 533.0
-offset_right = 514.0
-offset_bottom = 564.0
-scale = Vector2(2.23296, 2.23296)
-text = "Entre ton score dans le Leaderboard!"
-text_overrun_behavior = 2
 
 [connection signal="pressed" from="CanvasLayer/retry_button" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/main_menu_button" to="." method="_on_main_menu_button_pressed"]
