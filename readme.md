@@ -32,5 +32,5 @@ Pour chaque tuile de gazon, une texture est sélectionnée au hasard dans un atl
 
 ![alt text](image-1.png)
 
-    pour cet algorithme, je me suis aider de cette source 
+    pour cet algorithme, je me suis aidé de cette source 
     https://www.youtube.com/watch?v=rlUzizExe2Q
